@@ -1,0 +1,15 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile 'com.google.guava:guava:23.0'
+    compile 'org.springframework:spring-context:5.0.0.RELEASE'
+    compile project(':aggregate-core')
+
+    testCompile 'junit:junit:4.12'
+}
+
