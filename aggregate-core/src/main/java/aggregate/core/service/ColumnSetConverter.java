@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Component;
-
 import aggregate.core.constant.BaseSheetHeader;
 import aggregate.core.model.ColumnSet;
 import aggregate.core.model.column.Column;
@@ -18,7 +16,7 @@ import aggregate.core.util.CheckUtils;
 @Component
 public class ColumnSetConverter {
 
-  public List<ColumnSet> convert(Map<GroupingKeys, BigDecimal> aggregateResult,
+  public List<ColumnSet> convertForBigDecimal(Map<GroupingKeys, BigDecimal> aggregateResult,
       BaseSheetHeader summaryKey) {
     return aggregateResult.entrySet().stream()
         .map(e -> convertToColumnSet(e.getKey(), e.getValue(), summaryKey))
@@ -28,6 +26,13 @@ public class ColumnSetConverter {
   public List<ColumnSet> convert(Map<GroupingKeys, ColumnSet> aggregateResult,
       List<BaseSheetHeader> headers) {
     return aggregateResult.entrySet().stream().map(e -> convertToColumnSet(e.getValue(), headers))
+        .collect(Collectors.toList());
+  }
+
+  public List<ColumnSet> convertForLong(Map<GroupingKeys, Long> aggregateResult,
+      BaseSheetHeader summaryKey) {
+    return aggregateResult.entrySet().stream()
+        .map(e -> convertToColumnSet(e.getKey(), new BigDecimal(e.getValue()), summaryKey))
         .collect(Collectors.toList());
   }
 

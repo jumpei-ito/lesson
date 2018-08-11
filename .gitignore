@@ -26,3 +26,4 @@ RemoteSystemsTempFiles/
 bin/
 .DS_Store
 .gradle
+.recommenders

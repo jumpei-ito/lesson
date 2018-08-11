@@ -17,7 +17,9 @@ public enum OutputHeader implements BaseSheetHeader {
   /** 月ヘッダー */
   MONTH(3, "月", ColumnType.MONTH),
   /** 個人単位の売上率ヘッダー */
-  PERSONAL_AMOUNT_RATE(4, "売上率（個人）", ColumnType.PERCENT);
+  PERSONAL_AMOUNT_RATE(4, "売上率（個人）", ColumnType.PERCENT),
+  /** 個数ヘッダー **/
+  COUNT(5, "個数", ColumnType.BIGDECIMAL);
 
   private int id;
   private String headerName;
