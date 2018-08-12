@@ -20,8 +20,8 @@ public class AggregateService {
 
   public void aggregate(AggregateApplication application) {
     List<ColumnSet> columnSets = readCsvFile(application);
-    List<BaseAggregator> aggregaters = application.getAggregaters();
-    execute(aggregaters, columnSets);
+    List<BaseAggregator> aggregators = application.getAggregators();
+    execute(aggregators, columnSets);
   }
 
   private List<ColumnSet> readCsvFile(AggregateApplication application) {
@@ -30,18 +30,18 @@ public class AggregateService {
     return reader.read(sheetHeader, csvFilePath);
   }
 
-  private void execute(List<BaseAggregator> aggregaters, List<ColumnSet> columnSets) {
-    aggregaters.forEach(aggregater -> execute(aggregater, columnSets));
+  private void execute(List<BaseAggregator> aggregators, List<ColumnSet> columnSets) {
+    aggregators.forEach(aggregator -> execute(aggregator, columnSets));
   }
 
-  private void execute(BaseAggregator aggregater, List<ColumnSet> columnSets) {
-    String aggregaterName = aggregater.getClass().getSimpleName();
-    System.out.println(String.format("- Start %s.", aggregaterName));
+  private void execute(BaseAggregator aggregator, List<ColumnSet> columnSets) {
+    String aggregatorName = aggregator.getClass().getSimpleName();
+    System.out.println(String.format("- Start %s.", aggregatorName));
     // aggregate
-    List<ColumnSet> result = aggregater.aggregate(columnSets);
+    List<ColumnSet> result = aggregator.aggregate(columnSets);
     // TODO: output to csv file
     writer.write(result);
-    System.out.println(String.format("- End %s.", aggregaterName));
+    System.out.println(String.format("- End %s.", aggregatorName));
   }
 
 }

@@ -8,16 +8,16 @@ import aggregate.core.service.BaseAggregator;
 public class AggregateApplication {
 
   private final AnnotationConfigApplicationContext context;
-  private final List<BaseAggregator> aggregaters;
+  private final List<BaseAggregator> aggregators;
 
   public AggregateApplication(Class<?> clazz) {
     validateConfigClass(clazz);
     context = new AnnotationConfigApplicationContext(clazz);
-    aggregaters = getAggregaters(context);
+    aggregators = getAggregators(context);
   }
 
-  public List<BaseAggregator> getAggregaters() {
-    return aggregaters;
+  public List<BaseAggregator> getAggregators() {
+    return aggregators;
   }
 
   public <T> T getBean(Class<T> clazz) {
@@ -38,7 +38,7 @@ public class AggregateApplication {
     }
   }
 
-  private List<BaseAggregator> getAggregaters(AnnotationConfigApplicationContext context) {
+  private List<BaseAggregator> getAggregators(AnnotationConfigApplicationContext context) {
     return context.getBeansOfType(BaseAggregator.class).values().stream()
         .sorted((a1, a2) -> a1.getExecuteOrder() - a2.getExecuteOrder())
         .collect(Collectors.toList());
