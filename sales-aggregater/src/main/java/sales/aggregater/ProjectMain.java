@@ -7,7 +7,7 @@ public class ProjectMain {
 
   public static void main(String[] args) {
     System.out.println("Start Sales Aggregater.");
-    // boot up spring
+    // Spring boot up
     AggregateApplication application = new AggregateApplication(SalesAggregateConfig.class);
     // aggregate
     AggregateService service = application.getBean(AggregateService.class);
