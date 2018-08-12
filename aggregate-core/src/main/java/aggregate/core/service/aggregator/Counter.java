@@ -1,7 +1,9 @@
 package aggregate.core.service.aggregator;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,10 +26,14 @@ public class Counter {
 
   public List<ColumnSet> execute(List<ColumnSet> columnSets, GroupingKeysBuilder builder,
       BaseSheetHeader summaryKey, List<SortKey> sortKeys) {
-    Map<GroupingKeys, Long> tmpResult = columnSets.stream().collect(
-        Collectors.groupingBy(FunctionUtils.getGroupingKeys(builder), Collectors.counting()));
-    List<ColumnSet> convertedResult = converter.convertForLong(tmpResult, summaryKey);
+    Map<GroupingKeys, BigDecimal> tmpResult = columnSets.stream()
+        .collect(Collectors.groupingBy(FunctionUtils.getGroupingKeys(builder), counting()));
+    List<ColumnSet> convertedResult = converter.convert(tmpResult, summaryKey);
     return sorter.sortColumnSets(convertedResult, sortKeys);
+  }
+
+  private Collector<ColumnSet, ?, BigDecimal> counting() {
+    return Collectors.reducing(BigDecimal.ZERO, columnSet -> BigDecimal.ONE, BigDecimal::add);
   }
 
 }

@@ -32,7 +32,7 @@ public class Summarizer {
       BaseSheetHeader summaryKey, List<SortKey> sortKeys) {
     Map<GroupingKeys, BigDecimal> tmpResult = columnSets.stream().collect(Collectors
         .groupingBy(FunctionUtils.getGroupingKeys(builder), getSummaryCollector(summaryKey)));
-    List<ColumnSet> convertedResult = converter.convertForBigDecimal(tmpResult, summaryKey);
+    List<ColumnSet> convertedResult = converter.convert(tmpResult, summaryKey);
     return sorter.sortColumnSets(convertedResult, sortKeys);
   }
 
@@ -41,7 +41,7 @@ public class Summarizer {
     Map<GroupingKeys, BigDecimal> tmpResult =
         columnSets.stream().collect(Collectors.groupingBy(FunctionUtils.getGroupingKeys(builder),
             getSummaryCollector(summaryKey.getAggregateKey())));
-    List<ColumnSet> convertedResult = converter.convertForBigDecimal(tmpResult, summaryKey.getOutputKey());
+    List<ColumnSet> convertedResult = converter.convert(tmpResult, summaryKey.getOutputKey());
     return sorter.sortColumnSets(convertedResult, sortKeys);
   }
 
