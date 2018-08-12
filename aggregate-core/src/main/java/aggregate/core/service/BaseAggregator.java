@@ -4,7 +4,7 @@ import java.util.List;
 
 import aggregate.core.model.ColumnSet;
 
-public interface BaseAggregater {
+public interface BaseAggregator {
 
   int getExecuteOrder();
 

@@ -10,14 +10,14 @@ import aggregate.core.constant.SortType;
 import aggregate.core.model.ColumnSet;
 import aggregate.core.model.SortKey;
 import aggregate.core.model.grouping.GroupingKeysBuilder;
-import aggregate.core.service.BaseAggregater;
+import aggregate.core.service.BaseAggregator;
 import aggregate.core.service.aggregator.Summarizer;
 import aggregate.core.util.FunctionUtils;
 import sales.aggregator.constant.OutputHeader;
 import sales.aggregator.constant.SalesSheetHeader;
 
 @Component
-public class DayOfWeekAmountSummaryAggregater implements BaseAggregater {
+public class DayOfWeekAmountSummaryAggregator implements BaseAggregator {
 
   @Autowired
   private Summarizer summarizer;

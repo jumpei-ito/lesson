@@ -3,12 +3,12 @@ package aggregate.core;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import aggregate.core.service.BaseAggregater;
+import aggregate.core.service.BaseAggregator;
 
 public class AggregateApplication {
 
   private final AnnotationConfigApplicationContext context;
-  private final List<BaseAggregater> aggregaters;
+  private final List<BaseAggregator> aggregaters;
 
   public AggregateApplication(Class<?> clazz) {
     validateConfigClass(clazz);
@@ -16,7 +16,7 @@ public class AggregateApplication {
     aggregaters = getAggregaters(context);
   }
 
-  public List<BaseAggregater> getAggregaters() {
+  public List<BaseAggregator> getAggregaters() {
     return aggregaters;
   }
 
@@ -38,8 +38,8 @@ public class AggregateApplication {
     }
   }
 
-  private List<BaseAggregater> getAggregaters(AnnotationConfigApplicationContext context) {
-    return context.getBeansOfType(BaseAggregater.class).values().stream()
+  private List<BaseAggregator> getAggregaters(AnnotationConfigApplicationContext context) {
+    return context.getBeansOfType(BaseAggregator.class).values().stream()
         .sorted((a1, a2) -> a1.getExecuteOrder() - a2.getExecuteOrder())
         .collect(Collectors.toList());
   }

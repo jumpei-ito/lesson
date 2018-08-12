@@ -12,7 +12,7 @@ import aggregate.core.model.AggregateKey;
 import aggregate.core.model.ColumnSet;
 import aggregate.core.model.SortKey;
 import aggregate.core.model.grouping.GroupingKeysBuilder;
-import aggregate.core.service.BaseAggregater;
+import aggregate.core.service.BaseAggregator;
 import aggregate.core.service.ColumnSetConverter;
 import aggregate.core.service.aggregator.MaxPicker;
 import aggregate.core.service.aggregator.RateCalculator;
@@ -22,7 +22,7 @@ import sales.aggregator.constant.OutputHeader;
 import sales.aggregator.constant.SalesSheetHeader;
 
 @Component
-public class MonthlyTopSalesAggregater implements BaseAggregater {
+public class MonthlyTopSalesAggregator implements BaseAggregator {
 
   @Autowired
   private Summarizer summarizer;

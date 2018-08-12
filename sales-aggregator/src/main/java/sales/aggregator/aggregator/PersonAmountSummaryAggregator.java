@@ -10,12 +10,12 @@ import aggregate.core.constant.SortType;
 import aggregate.core.model.ColumnSet;
 import aggregate.core.model.SortKey;
 import aggregate.core.model.grouping.GroupingKeysBuilder;
-import aggregate.core.service.BaseAggregater;
+import aggregate.core.service.BaseAggregator;
 import aggregate.core.service.aggregator.Summarizer;
 import sales.aggregator.constant.SalesSheetHeader;
 
 @Component
-public class PersonAmountSummaryAggregater implements BaseAggregater {
+public class PersonAmountSummaryAggregator implements BaseAggregator {
 
   @Autowired
   private Summarizer summarizer;

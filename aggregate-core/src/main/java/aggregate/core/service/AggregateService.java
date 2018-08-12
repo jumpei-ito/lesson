@@ -20,7 +20,7 @@ public class AggregateService {
 
   public void aggregate(AggregateApplication application) {
     List<ColumnSet> columnSets = readCsvFile(application);
-    List<BaseAggregater> aggregaters = application.getAggregaters();
+    List<BaseAggregator> aggregaters = application.getAggregaters();
     execute(aggregaters, columnSets);
   }
 
@@ -30,11 +30,11 @@ public class AggregateService {
     return reader.read(sheetHeader, csvFilePath);
   }
 
-  private void execute(List<BaseAggregater> aggregaters, List<ColumnSet> columnSets) {
+  private void execute(List<BaseAggregator> aggregaters, List<ColumnSet> columnSets) {
     aggregaters.forEach(aggregater -> execute(aggregater, columnSets));
   }
 
-  private void execute(BaseAggregater aggregater, List<ColumnSet> columnSets) {
+  private void execute(BaseAggregator aggregater, List<ColumnSet> columnSets) {
     String aggregaterName = aggregater.getClass().getSimpleName();
     System.out.println(String.format("- Start %s.", aggregaterName));
     // aggregate
