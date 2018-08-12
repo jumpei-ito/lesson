@@ -15,6 +15,6 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'sales-aggregater'
+rootProject.name = 'sales-aggregator'
 include ':aggregate-core'
 project(':aggregate-core').projectDir = file('../aggregate-core')
