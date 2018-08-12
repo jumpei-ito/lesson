@@ -11,7 +11,7 @@ import aggregate.core.model.ColumnSet;
 import aggregate.core.model.SortKey;
 import aggregate.core.model.grouping.GroupingKeysBuilder;
 import aggregate.core.service.BaseAggregater;
-import aggregate.core.service.aggregater.Summarizer;
+import aggregate.core.service.aggregator.Summarizer;
 import sales.aggregator.constant.SalesSheetHeader;
 
 @Component

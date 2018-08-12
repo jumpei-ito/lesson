@@ -1,4 +1,4 @@
-package aggregate.core.service.aggregater;
+package aggregate.core.service.aggregator;
 
 import java.math.BigDecimal;
 import java.util.List;

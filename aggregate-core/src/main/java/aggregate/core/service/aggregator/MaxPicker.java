@@ -1,4 +1,4 @@
-package aggregate.core.service.aggregater;
+package aggregate.core.service.aggregator;
 
 import java.util.Comparator;
 import java.util.List;

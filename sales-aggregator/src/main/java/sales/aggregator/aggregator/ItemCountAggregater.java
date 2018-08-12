@@ -9,7 +9,7 @@ import aggregate.core.model.ColumnSet;
 import aggregate.core.model.SortKey;
 import aggregate.core.model.grouping.GroupingKeysBuilder;
 import aggregate.core.service.BaseAggregater;
-import aggregate.core.service.aggregater.Counter;
+import aggregate.core.service.aggregator.Counter;
 import sales.aggregator.constant.OutputHeader;
 import sales.aggregator.constant.SalesSheetHeader;
 
