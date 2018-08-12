@@ -10,11 +10,6 @@ public class AggregateApplication {
   private final AnnotationConfigApplicationContext context;
   private final List<BaseAggregater> aggregaters;
 
-  public AggregateApplication() {
-    context = new AnnotationConfigApplicationContext(AggregateConfig.class);
-    aggregaters = getAggregaters(context);
-  }
-
   public AggregateApplication(Class<?> clazz) {
     validateConfigClass(clazz);
     context = new AnnotationConfigApplicationContext(clazz);
