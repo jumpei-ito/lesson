@@ -1,4 +1,4 @@
-package sales.aggregater;
+package sales.aggregator;
 
 import aggregate.core.AggregateApplication;
 import aggregate.core.service.AggregateService;

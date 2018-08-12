@@ -1,4 +1,4 @@
-package sales.aggregater.aggregater;
+package sales.aggregator.aggregator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +12,7 @@ import aggregate.core.model.SortKey;
 import aggregate.core.model.grouping.GroupingKeysBuilder;
 import aggregate.core.service.BaseAggregater;
 import aggregate.core.service.aggregater.Summarizer;
-import sales.aggregater.constant.SalesSheetHeader;
+import sales.aggregator.constant.SalesSheetHeader;
 
 @Component
 public class PersonAmountSummaryAggregater implements BaseAggregater {

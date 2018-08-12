@@ -1,4 +1,4 @@
-package sales.aggregater.constant;
+package sales.aggregator.constant;
 
 import aggregate.core.constant.BaseSheetHeader;
 import aggregate.core.constant.ColumnType;

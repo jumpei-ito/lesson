@@ -1,4 +1,4 @@
-package sales.aggregater.aggregater;
+package sales.aggregator.aggregator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,8 +18,8 @@ import aggregate.core.service.aggregater.MaxPicker;
 import aggregate.core.service.aggregater.RateCalculator;
 import aggregate.core.service.aggregater.Summarizer;
 import aggregate.core.util.FunctionUtils;
-import sales.aggregater.constant.OutputHeader;
-import sales.aggregater.constant.SalesSheetHeader;
+import sales.aggregator.constant.OutputHeader;
+import sales.aggregator.constant.SalesSheetHeader;
 
 @Component
 public class MonthlyTopSalesAggregater implements BaseAggregater {

@@ -1,13 +1,13 @@
-package sales.aggregater;
+package sales.aggregator;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import aggregate.core.AggregateConfig;
 import aggregate.core.constant.BaseSheetHeader;
-import sales.aggregater.constant.SalesSheetHeader;
+import sales.aggregator.constant.SalesSheetHeader;
 
 @Configuration
-@ComponentScan("sales.aggregater")
+@ComponentScan("sales.aggregator")
 public class SalesAggregateConfig extends AggregateConfig {
 
   @Override
