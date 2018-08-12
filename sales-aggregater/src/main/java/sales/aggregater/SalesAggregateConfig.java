@@ -7,7 +7,7 @@ import aggregate.core.constant.BaseSheetHeader;
 import sales.aggregater.constant.SalesSheetHeader;
 
 @Configuration
-@ComponentScan("sales.aggregater.service")
+@ComponentScan("sales.aggregater")
 public class SalesAggregateConfig extends AggregateConfig {
 
   @Override
