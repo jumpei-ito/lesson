@@ -1,4 +1,4 @@
-package sales.aggregater.service.aggregater;
+package sales.aggregater.aggregater;
 
 import java.util.Arrays;
 import java.util.List;

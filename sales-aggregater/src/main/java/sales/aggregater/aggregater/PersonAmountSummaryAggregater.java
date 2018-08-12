@@ -1,4 +1,4 @@
-package sales.aggregater.service.aggregater;
+package sales.aggregater.aggregater;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,19 +12,17 @@ import aggregate.core.model.SortKey;
 import aggregate.core.model.grouping.GroupingKeysBuilder;
 import aggregate.core.service.BaseAggregater;
 import aggregate.core.service.aggregater.Summarizer;
-import aggregate.core.util.FunctionUtils;
-import sales.aggregater.constant.OutputHeader;
 import sales.aggregater.constant.SalesSheetHeader;
 
 @Component
-public class DayOfWeekAmountSummaryAggregater implements BaseAggregater {
+public class PersonAmountSummaryAggregater implements BaseAggregater {
 
   @Autowired
   private Summarizer summarizer;
 
   @Override
   public int getExecuteOrder() {
-    return 100;
+    return 300;
   }
 
   @Override
@@ -35,14 +33,14 @@ public class DayOfWeekAmountSummaryAggregater implements BaseAggregater {
 
   private GroupingKeysBuilder getGroupingKeysBuilders() {
     GroupingKeysBuilder builder = new GroupingKeysBuilder();
-    builder.addFunctionKey(FunctionUtils.getDayOfWeekGroupingFunction(SalesSheetHeader.DATE),
-        OutputHeader.DAY_OF_WEEK);
+    builder.addHeaderKey(SalesSheetHeader.PERSON);
+    builder.addHeaderKey(SalesSheetHeader.ITEM_CODE);
     return builder;
   }
 
   private List<SortKey> getSortKeys() {
-    return Arrays.asList(new SortKey(OutputHeader.DAY_OF_WEEK, SortType.ASC),
-        new SortKey(SalesSheetHeader.AMOUNT, SortType.DESC));
+    return Arrays.asList(new SortKey(SalesSheetHeader.PERSON, SortType.DESC),
+        new SortKey(SalesSheetHeader.ITEM_CODE, SortType.ASC));
   }
 
 }

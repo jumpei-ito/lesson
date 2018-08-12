@@ -2,9 +2,7 @@ package aggregate.core;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import aggregate.core.service.BaseAggregater;
 
 public class AggregateApplication {
@@ -18,13 +16,7 @@ public class AggregateApplication {
   }
 
   public AggregateApplication(Class<?> clazz) {
-    if (clazz == null) {
-      throw new RuntimeException("Config class is null.");
-    }
-    String superClass = clazz.getSuperclass().getSimpleName();
-    if (!AggregateConfig.class.getSimpleName().equals(superClass)) {
-      throw new RuntimeException("Config class doesn't extend AggregateConfig: " + superClass);
-    }
+    validateConfigClass(clazz);
     context = new AnnotationConfigApplicationContext(clazz);
     aggregaters = getAggregaters(context);
   }
@@ -39,6 +31,16 @@ public class AggregateApplication {
 
   public String getProperty(String name) {
     return context.getBean(name, String.class);
+  }
+
+  private void validateConfigClass(Class<?> clazz) {
+    if (clazz == null) {
+      throw new RuntimeException("Config class is null.");
+    }
+    String superClass = clazz.getSuperclass().getSimpleName();
+    if (!AggregateConfig.class.getSimpleName().equals(superClass)) {
+      throw new RuntimeException("Config class doesn't extend AggregateConfig: " + superClass);
+    }
   }
 
   private List<BaseAggregater> getAggregaters(AnnotationConfigApplicationContext context) {

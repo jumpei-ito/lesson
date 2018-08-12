@@ -1,25 +1,30 @@
 package aggregate.core.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Component;
+import aggregate.core.AggregateApplication;
 import aggregate.core.constant.BaseSheetHeader;
+import aggregate.core.constant.Constant;
 import aggregate.core.io.CsvReader;
 import aggregate.core.io.Writer;
 import aggregate.core.model.ColumnSet;
 
-public abstract class BaseAggregateService {
+@Component
+public class AggregateService {
 
   @Autowired
   CsvReader reader;
   @Autowired
   private Writer writer;
 
-  protected abstract BaseSheetHeader[] getSheetHeader();
-
-  public void aggregate(List<BaseAggregater> aggregaters, String filePath) {
-    List<ColumnSet> columnSets = reader.read(getSheetHeader(), filePath);
+  public void aggregate(AggregateApplication application) {
+    // read csv file to columnSets
+    String csvFilePath = application.getProperty(Constant.P_CSV_FILE_PATH);
+    BaseSheetHeader[] sheetHeader = application.getBean(BaseSheetHeader[].class);
+    List<ColumnSet> columnSets = reader.read(sheetHeader, csvFilePath);
+    // aggregate
+    List<BaseAggregater> aggregaters = application.getAggregaters();
     execute(aggregaters, columnSets);
   }
 
