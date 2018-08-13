@@ -33,6 +33,7 @@ public class AggregateApplication {
     if (clazz == null) {
       throw new RuntimeException("Config class is null.");
     }
+    // Config class must extend AggregateConfig.
     String superClass = clazz.getSuperclass().getSimpleName();
     if (!AggregateConfig.class.getSimpleName().equals(superClass)) {
       throw new RuntimeException("Config class doesn't extend AggregateConfig: " + superClass);

@@ -25,8 +25,9 @@ public class AggregateService {
   }
 
   private List<ColumnSet> readCsvFile(AggregateApplication application) {
-    String csvFilePath = application.getProperty(Constant.P_CSV_FILE_PATH);
+    // get header from config -> csvFileHeader()
     BaseSheetHeader[] sheetHeader = application.getBean(BaseSheetHeader[].class);
+    String csvFilePath = application.getProperty(Constant.P_CSV_FILE_PATH);
     return reader.read(sheetHeader, csvFilePath);
   }
 

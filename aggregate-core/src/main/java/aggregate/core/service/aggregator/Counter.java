@@ -26,9 +26,12 @@ public class Counter {
 
   public List<ColumnSet> execute(List<ColumnSet> columnSets, GroupingKeysBuilder builder,
       BaseSheetHeader summaryKey, List<SortKey> sortKeys) {
+    // count
     Map<GroupingKeys, BigDecimal> tmpResult = columnSets.stream()
         .collect(Collectors.groupingBy(FunctionUtils.getGroupingKeys(builder), counting()));
+    // convert to columnSet
     List<ColumnSet> convertedResult = converter.convert(tmpResult, summaryKey);
+    // sort columnSet
     return sorter.sortColumnSets(convertedResult, sortKeys);
   }
 

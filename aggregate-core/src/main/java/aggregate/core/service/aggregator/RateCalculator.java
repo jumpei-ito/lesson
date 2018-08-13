@@ -2,9 +2,7 @@ package aggregate.core.service.aggregator;
 
 import java.math.BigDecimal;
 import java.util.List;
-
 import org.springframework.stereotype.Component;
-
 import aggregate.core.constant.BaseSheetHeader;
 import aggregate.core.constant.Constant;
 import aggregate.core.model.ColumnSet;
@@ -26,6 +24,7 @@ public class RateCalculator {
    */
   public List<ColumnSet> execute(List<ColumnSet> columnSets, BaseSheetHeader divisorHeader,
       BaseSheetHeader dividendHeader, BaseSheetHeader outputHeader) {
+    // calculate
     columnSets.forEach(columnSet -> columnSet.addColumn(outputHeader,
         getPercentageColumn(FunctionUtils.getBigDecimalValue(divisorHeader).apply(columnSet),
             FunctionUtils.getBigDecimalValue(dividendHeader).apply(columnSet), outputHeader)));

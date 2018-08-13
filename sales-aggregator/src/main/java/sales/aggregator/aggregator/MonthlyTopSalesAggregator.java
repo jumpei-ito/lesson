@@ -2,10 +2,8 @@ package sales.aggregator.aggregator;
 
 import java.util.Arrays;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import aggregate.core.constant.BaseSheetHeader;
 import aggregate.core.constant.SortType;
 import aggregate.core.model.AggregateKey;
@@ -40,10 +38,15 @@ public class MonthlyTopSalesAggregator implements BaseAggregator {
 
   @Override
   public List<ColumnSet> aggregate(List<ColumnSet> columnSets) {
+    // Aggregate amount each month and person.
     List<ColumnSet> summaryPerMonthAndPerson = getAmountSummaryByMonthAndPerson(columnSets);
+    // Aggregate amount each month.
     List<ColumnSet> monthlySummary = getAmountSummaryPerMonth(summaryPerMonthAndPerson);
+    // Get person of max amount.
     List<ColumnSet> monthlyBestPersons = getMonthlyMaxAmount(summaryPerMonthAndPerson);
+    // Merge two aggregate results.
     List<ColumnSet> convertedResult = converter.mergeToRight(monthlySummary, monthlyBestPersons);
+    // Aggregate personal amount rate.
     return getPersonalAmountRate(convertedResult);
   }
 

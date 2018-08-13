@@ -6,10 +6,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import aggregate.core.constant.BaseSheetHeader;
 import aggregate.core.model.ColumnSet;
 import aggregate.core.model.SortKey;
@@ -30,9 +28,12 @@ public class MaxPicker {
 
   public List<ColumnSet> execute(List<ColumnSet> columnSets, GroupingKeysBuilder builders,
       BaseSheetHeader aggregateKey, List<SortKey> sortKeys, List<BaseSheetHeader> outputHeaders) {
+    // aggregate
     Map<GroupingKeys, ColumnSet> tmpResult = columnSets.stream().collect(Collectors
         .groupingBy(FunctionUtils.getGroupingKeys(builders), getMaxCollector(aggregateKey)));
+    // convert to columnSet
     List<ColumnSet> convertedResult = converter.convert(tmpResult, outputHeaders);
+    // sort columnSet
     return sorter.sortColumnSets(convertedResult, sortKeys);
   }
 

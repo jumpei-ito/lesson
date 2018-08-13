@@ -1,7 +1,6 @@
 package aggregate.core.io;
 
 import java.util.List;
-
 import aggregate.core.model.ColumnSet;
 
 /**
@@ -11,6 +10,7 @@ public class StdOutWriter extends Writer {
 
   @Override
   public void write(List<ColumnSet> columnSets) {
+    // TODO: validate columnSets size
     System.out.println("-- Start output result.");
     System.out.println(getHeaderLine(columnSets.get(0)));
     columnSets.forEach(System.out::println);
