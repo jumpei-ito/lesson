@@ -1,10 +1,9 @@
 package aggregate.core.model;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.stream.Collectors;
 import aggregate.core.constant.BaseSheetHeader;
 import aggregate.core.constant.Constant;
 import aggregate.core.model.column.BigDecimalColumn;
@@ -77,7 +76,9 @@ public class ColumnSet {
   }
 
   public List<BaseSheetHeader> getHeaders() {
-    return new ArrayList<>(columns.keySet());
+    return columns.keySet().stream()
+        .sorted((h1, h2) -> getColumn(h1).getNo() - getColumn(h2).getNo())
+        .collect(Collectors.toList());
   }
 
   public boolean containsHeader(BaseSheetHeader header) {
