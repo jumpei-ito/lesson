@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Component;
-
 import aggregate.core.constant.BaseSheetHeader;
 import aggregate.core.constant.Constant;
 import aggregate.core.model.ColumnSet;
@@ -30,14 +31,23 @@ public class CsvReader {
    * @return {@link ColumnSet}のList
    */
   public List<ColumnSet> read(BaseSheetHeader[] headers, String filePath) {
+    return readMain(headers, filePath, readLineFunction());
+  }
+
+  public List<ColumnSet> read(BaseSheetHeader[] headers, String filePath, String quote) {
+    return readMain(headers, filePath, readLineFunction(quote));
+  }
+
+  private List<ColumnSet> readMain(BaseSheetHeader[] headers, String filePath,
+      Function<String, String[]> readLineFunction) {
     try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
       String line = br.readLine();
       // read header
-      List<BaseSheetHeader> fileHeaders = readHeader(headers, line.split(Constant.COMMA));
+      List<BaseSheetHeader> fileHeaders = readHeader(headers, readLineFunction.apply(line));
       // read body
       List<ColumnSet> result = new ArrayList<>();
       while ((line = br.readLine()) != null) {
-        result.add(new ColumnSet(fileHeaders, line.split(Constant.COMMA)));
+        result.add(new ColumnSet(fileHeaders, readLineFunction.apply(line)));
       }
       return result;
     } catch (FileNotFoundException e) {
@@ -60,6 +70,23 @@ public class CsvReader {
     } else {
       throw new RuntimeException("Header is not found: " + headerName);
     }
+  }
+
+  private Function<String, String[]> readLineFunction() {
+    return line -> line.split(Constant.COMMA);
+  }
+
+  private Function<String, String[]> readLineFunction(String quote) {
+    return line -> getLineArrayWithQuote(line, quote);
+  }
+
+  private String[] getLineArrayWithQuote(String line, String quote) {
+    Matcher matcher = Pattern.compile(String.format("%s.*?%s", quote, quote)).matcher(line);
+    List<String> result = new ArrayList<>();
+    while (matcher.find()) {
+      result.add(matcher.group().replaceAll(quote, ""));
+    }
+    return result.toArray(new String[result.size()]);
   }
 
 }
