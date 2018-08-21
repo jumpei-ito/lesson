@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import aggregate.core.constant.BaseSheetHeader;
+import aggregate.core.constant.ColumnType;
+import aggregate.core.exception.MissingColumnTypeException;
 import aggregate.core.model.AggregateKey;
 import aggregate.core.model.ColumnSet;
 import aggregate.core.model.SortKey;
@@ -51,7 +53,7 @@ public class Summarizer {
 
   private Collector<ColumnSet, ?, BigDecimal> getSummaryCollector(BaseSheetHeader summaryKey) {
     if (!CheckUtils.isBigDecimalColumnType(summaryKey)) {
-      throw new RuntimeException("Target column type mast be BigDecimal: " + summaryKey.toString());
+      throw new MissingColumnTypeException(ColumnType.BIGDECIMAL, summaryKey.getColumnType());
     }
     return Collectors.reducing(BigDecimal.ZERO, FunctionUtils.getBigDecimalValue(summaryKey),
         BigDecimal::add);

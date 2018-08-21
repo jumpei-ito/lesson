@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import aggregate.core.constant.BaseSheetHeader;
+import aggregate.core.constant.ColumnType;
+import aggregate.core.exception.MissingColumnTypeException;
 import aggregate.core.model.ColumnSet;
 import aggregate.core.model.SortKey;
 import aggregate.core.model.grouping.GroupingKeys;
@@ -39,8 +41,7 @@ public class MaxPicker {
 
   private Collector<ColumnSet, ?, ColumnSet> getMaxCollector(BaseSheetHeader aggregateKey) {
     if (!CheckUtils.isBigDecimalColumnType(aggregateKey)) {
-      throw new RuntimeException(
-          "Target column type mast be BigDecimal: " + aggregateKey.toString());
+      throw new MissingColumnTypeException(ColumnType.BIGDECIMAL, aggregateKey.getColumnType());
     }
     return Collectors.collectingAndThen(Collectors.maxBy(getComparator(aggregateKey)),
         Optional::get);
