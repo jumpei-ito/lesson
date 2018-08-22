@@ -1,5 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'groovy'
+apply plugin: 'jacoco'
+
+def defaultEncoding = 'UTF-8'
+tasks.withType(AbstractCompile) each { it.options.encoding = defaultEncoding }
+tasks.withType(GroovyCompile) each { it.groovyOptions.encoding = defaultEncoding }
 
 repositories {
     jcenter()
@@ -9,9 +14,8 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'com.google.guava:guava:25.1-jre'
     compile 'org.springframework:spring-context:5.0.0.RELEASE'
-
     compile 'org.codehaus.groovy:groovy-all:2.4.15'
-    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
 
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
     testCompile 'junit:junit:4.12'
 }
