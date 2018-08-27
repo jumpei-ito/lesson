@@ -43,14 +43,12 @@ class CounterSpecification extends BaseAggregateSpecification {
   }
 
   def getParams1() {
-    new AggregateParameters(
-        originalHeaders: Constant.ORIGINAL_HEADERS,
-        originalFilePath: Constant.ORIGINAL_FILE_PATH,
-        expectedHeaders: expectedHeaders1,
-        expectedFilePath: "bin/counter/counter-result-01.csv",
-        groupingKeyBuilder: Constant.BUILDER_GROUING_BY_PERSON_AND_ITEM,
-        aggregateKeyHeader: TestOutputHeader.COUNT,
-        sortKeys: Constant.SORT_KEY_BY_PERSON_AND_ITEM)
+    AggregateParameters.builder()
+        .expectedHeaders(expectedHeaders1)
+        .expectedFilePath("bin/counter/counter-result-01.csv")
+        .groupingKeyBuilder(Constant.BUILDER_GROUING_BY_PERSON_AND_ITEM)
+        .aggregateKeyHeader(TestOutputHeader.COUNT)
+        .sortKeys(Constant.SORT_KEY_BY_PERSON_AND_ITEM).build()
   }
 
   def getExpectedHeaders1() {
@@ -59,14 +57,12 @@ class CounterSpecification extends BaseAggregateSpecification {
   }
 
   def getParams2() {
-    new AggregateParameters(
-        originalHeaders: Constant.ORIGINAL_HEADERS,
-        originalFilePath: Constant.ORIGINAL_FILE_PATH,
-        expectedHeaders: expectedHeaders2,
-        expectedFilePath: "bin/counter/counter-result-02.csv",
-        groupingKeyBuilder: groupingKeyBuilder2,
-        aggregateKeyHeader: TestOutputHeader.COUNT,
-        sortKeys: sortKeys2)
+    AggregateParameters.builder()
+        .expectedHeaders(expectedHeaders2)
+        .expectedFilePath("bin/counter/counter-result-02.csv")
+        .groupingKeyBuilder(groupingKeyBuilder2)
+        .aggregateKeyHeader(TestOutputHeader.COUNT)
+        .sortKeys(sortKeys2).build()
   }
 
   def getExpectedHeaders2() {

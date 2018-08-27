@@ -9,9 +9,9 @@ class Constant {
   /**  */
   static def ORIGINAL_HEADERS = TestSalesSheetHeader.values()
   /**  */
-  static String ORIGINAL_FILE_PATH = "bin/TestSalesList.csv"
+  static def ORIGINAL_FILE_PATH = "bin/TestSalesList.csv"
   /**  */
-  static String QUOTE = "\""
+  static def QUOTE = "\""
 
   static def BUILDER_GROUING_BY_PERSON_AND_ITEM = groupingKeyBuilder1
 

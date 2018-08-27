@@ -29,7 +29,7 @@ class MaxPickerSpecification extends BaseAggregateSpecification {
     def expected = readExpectedFile(params, Constant.QUOTE)
     // aggregate
     def aggregated = picker.execute(original, params.groupingKeyBuilder,
-        params.aggregateKeyHeader, params.sortKeys, outputHeaders)
+        params.aggregateKeyHeader, params.sortKeys, params.outputHeaders)
 
     when:
     def result = compare(expected, aggregated)
@@ -38,8 +38,8 @@ class MaxPickerSpecification extends BaseAggregateSpecification {
     assertCompareResult(result)
 
     where:
-    title                        | params  | outputHeaders
-    "Get Max Amount By Two Keys" | params1 | outputHeaders1
+    title                        | params
+    "Get Max Amount By Two Keys" | params1
   }
 
   def "Throwing Missing Column Type Exception Test"() {
@@ -48,7 +48,7 @@ class MaxPickerSpecification extends BaseAggregateSpecification {
 
     when:
     picker.execute(original, params.groupingKeyBuilder, params.aggregateKeyHeader,
-        params.sortKeys, outputHeaders1)
+        params.sortKeys, params.outputHeaders)
 
     then:
     def e = thrown(MissingColumnTypeException)
@@ -57,19 +57,22 @@ class MaxPickerSpecification extends BaseAggregateSpecification {
   }
 
   def getParams1() {
-    new AggregateParameters(
-        originalHeaders: Constant.ORIGINAL_HEADERS,
-        originalFilePath: Constant.ORIGINAL_FILE_PATH,
-        expectedHeaders: expectedHeaders1,
-        expectedFilePath: "bin/maxPicker/maxPicker-result-01.csv",
-        groupingKeyBuilder: Constant.BUILDER_GROUING_BY_PERSON_AND_ITEM,
-        aggregateKeyHeader: TestSalesSheetHeader.AMOUNT,
-        sortKeys: Constant.SORT_KEY_BY_PERSON_AND_ITEM)
+    AggregateParameters.builder()
+        .expectedHeaders(expectedHeaders1)
+        .expectedFilePath("bin/maxPicker/maxPicker-result-01.csv")
+        .groupingKeyBuilder(Constant.BUILDER_GROUING_BY_PERSON_AND_ITEM)
+        .aggregateKeyHeader(TestSalesSheetHeader.AMOUNT)
+        .sortKeys(Constant.SORT_KEY_BY_PERSON_AND_ITEM)
+        .outputHeaders(outputHeaders1).build()
   }
 
   def getExpectedHeaders1() {
     BaseSheetHeader[] header =
-        [TestSalesSheetHeader.PERSON, TestSalesSheetHeader.ITEM_CODE, TestOutputHeader.EXPECT_AMOUNT]
+        [
+          TestSalesSheetHeader.PERSON,
+          TestSalesSheetHeader.ITEM_CODE,
+          TestOutputHeader.EXPECT_AMOUNT
+        ]
   }
 
   def getOutputHeaders1() {
@@ -78,13 +81,12 @@ class MaxPickerSpecification extends BaseAggregateSpecification {
   }
 
   def getExceptionParams() {
-    new AggregateParameters(
-        originalHeaders: Constant.ORIGINAL_HEADERS,
-        originalFilePath: Constant.ORIGINAL_FILE_PATH,
-        expectedHeaders: expectedHeaders1,
-        expectedFilePath: "bin/maxPicker/maxPicker-result-01.csv",
-        groupingKeyBuilder: Constant.BUILDER_GROUING_BY_PERSON_AND_ITEM,
-        aggregateKeyHeader: TestSalesSheetHeader.DATE,
-        sortKeys: Constant.SORT_KEY_BY_PERSON_AND_ITEM)
+    AggregateParameters.builder()
+        .expectedHeaders(expectedHeaders1)
+        .expectedFilePath("bin/maxPicker/maxPicker-result-01.csv")
+        .groupingKeyBuilder(Constant.BUILDER_GROUING_BY_PERSON_AND_ITEM)
+        .aggregateKeyHeader(TestSalesSheetHeader.DATE)
+        .sortKeys(Constant.SORT_KEY_BY_PERSON_AND_ITEM)
+        .outputHeaders(outputHeaders1).build()
   }
 }
