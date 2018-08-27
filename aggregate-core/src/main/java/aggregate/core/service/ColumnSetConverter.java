@@ -55,11 +55,11 @@ public class ColumnSetConverter {
   }
 
   public List<ColumnSet> mergeToRight(List<ColumnSet> to, List<ColumnSet> from) {
-    List<ColumnSet> result = new ArrayList<>();
     if (to.size() != from.size()) {
       throw new RuntimeException(String
           .format("Missmatch target ColumnSets size. to: %s, from: %s.", to.size(), from.size()));
     }
+    List<ColumnSet> result = new ArrayList<>();
     for (int i = 0; i < to.size(); i++) {
       result.add(mergeToRight(to.get(i), from.get(i)));
     }
@@ -77,6 +77,32 @@ public class ColumnSetConverter {
     if (!columnSet.containsHeader(header)) {
       columnSet.addColumn(header, column);
     }
+  }
+
+  public List<ColumnSet> merge(List<ColumnSet> to, List<ColumnSet> from,
+      List<BaseSheetHeader> primaryKey, BaseSheetHeader after) {
+    if (to.size() < from.size()) {
+      throw new RuntimeException(String.format(
+          "Merged ColumnSets size must be more than Merging ColumnSets size. to: %s, from: %s.",
+          to.size(), from.size()));
+    }
+    List<ColumnSet> result = new ArrayList<>();
+    from.forEach(columnSet -> result.addAll(mergeColumnSet(to, columnSet, primaryKey, after)));
+    return result;
+  }
+
+  private List<ColumnSet> mergeColumnSet(List<ColumnSet> to, ColumnSet from,
+      List<BaseSheetHeader> primaryKey, BaseSheetHeader after) {
+    return to.stream().filter(columnSet -> columnSet.compareTo(from, primaryKey) == 0)
+        .map(columnSet -> mergeColumns(columnSet, from, primaryKey, after))
+        .collect(Collectors.toList());
+  }
+
+  private ColumnSet mergeColumns(ColumnSet to, ColumnSet from, List<BaseSheetHeader> primaryKey,
+      BaseSheetHeader after) {
+    from.getHeaders().stream().filter(header -> !primaryKey.contains(header))
+        .forEach(header -> to.insertColumn(header, after, from.getColumn(header)));
+    return to;
   }
 
 }

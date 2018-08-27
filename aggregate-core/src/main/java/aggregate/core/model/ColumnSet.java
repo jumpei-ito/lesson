@@ -3,6 +3,7 @@ package aggregate.core.model;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import aggregate.core.constant.BaseSheetHeader;
 import aggregate.core.constant.Constant;
@@ -70,9 +71,26 @@ public class ColumnSet {
 
   public void addColumn(BaseSheetHeader header, Column column) {
     // TODO: duplicate header check
+    addColumn(header, column, columns.size());
+  }
+
+  private void addColumn(BaseSheetHeader header, Column column, int colNo) {
+    // TODO: duplicate colNo check
     Column newColumn = column.clone();
-    newColumn.setNo(columns.size());
+    newColumn.setNo(colNo);
     columns.put(header, newColumn);
+  }
+
+  public void insertColumn(BaseSheetHeader header, BaseSheetHeader after, Column column) {
+    // TODO: duplicate header check
+    int afterColumnNo = columns.get(after).getNo();
+    incrementColumnNo(afterColumnNo);
+    addColumn(header, column, afterColumnNo + 1);
+  }
+
+  private void incrementColumnNo(int afterColumnNo) {
+    columns.values().stream().filter(c -> c.getNo() > afterColumnNo).collect(Collectors.toList())
+        .forEach(c -> c.setNo(c.getNo() + 1));
   }
 
   public List<BaseSheetHeader> getHeaders() {
@@ -85,12 +103,26 @@ public class ColumnSet {
     return columns.containsKey(header);
   }
 
+  public boolean containsHeaders(List<BaseSheetHeader> headers) {
+    Optional<BaseSheetHeader> result =
+        headers.stream().filter(header -> columns.containsKey(header)).findFirst();
+    return result.isPresent();
+  }
+
   @Override
   public String toString() {
     StringBuffer sb = new StringBuffer();
     columns.entrySet().stream().sorted((e1, e2) -> e1.getValue().getNo() - e2.getValue().getNo())
         .forEach(e -> sb.append(e.getValue().getOutputValue()).append(Constant.COMMA));
     return sb.substring(0, sb.length() - 1);
+  }
+
+  public int compareTo(ColumnSet columnSet, List<BaseSheetHeader> headers) {
+    if (!containsHeaders(headers) || !columnSet.containsHeaders(headers)) {
+      throw new RuntimeException("Illegal headers: " + headers);
+    }
+    return headers.stream()
+        .mapToInt(header -> columnSet.getColumn(header).compareTo(this.getColumn(header))).sum();
   }
 
 }
