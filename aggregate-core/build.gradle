@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'jacoco'
 
+// Compile and execute by UTF-8 to read JDK javadoc.
 def defaultEncoding = 'UTF-8'
 tasks.withType(AbstractCompile) each { it.options.encoding = defaultEncoding }
 tasks.withType(GroovyCompile) each { it.groovyOptions.encoding = defaultEncoding }
@@ -11,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
     compile 'com.google.guava:guava:25.1-jre'
     compile 'org.springframework:spring-context:5.0.0.RELEASE'
     compile 'org.codehaus.groovy:groovy-all:2.4.15'
