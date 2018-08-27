@@ -17,17 +17,17 @@ public class RateCalculator {
    * 引数のヘッダーを基に割合を算出し、{@link ColumnSet}の１番右のカラムに追加する
    *
    * @param columnSets カラムセット
-   * @param divisorHeader 割る数を保持するヘッダー
    * @param dividendHeader 割られる数を保持するヘッダー
+   * @param divisorHeader 割る数を保持するヘッダー
    * @param outputHeader 計算結果ヘッダー
    * @return
    */
-  public List<ColumnSet> execute(List<ColumnSet> columnSets, BaseSheetHeader divisorHeader,
-      BaseSheetHeader dividendHeader, BaseSheetHeader outputHeader) {
+  public List<ColumnSet> execute(List<ColumnSet> columnSets, BaseSheetHeader dividendHeader,
+      BaseSheetHeader divisorHeader, BaseSheetHeader outputHeader) {
     // calculate
     columnSets.forEach(columnSet -> columnSet.addColumn(outputHeader,
-        getPercentageColumn(FunctionUtils.getBigDecimalValue(divisorHeader).apply(columnSet),
-            FunctionUtils.getBigDecimalValue(dividendHeader).apply(columnSet), outputHeader)));
+        getPercentageColumn(FunctionUtils.getBigDecimalValue(dividendHeader).apply(columnSet),
+            FunctionUtils.getBigDecimalValue(divisorHeader).apply(columnSet), outputHeader)));
     return columnSets;
   }
 
