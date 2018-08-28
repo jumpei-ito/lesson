@@ -22,7 +22,13 @@ public enum TestOutputHeader implements BaseSheetHeader {
   /** テストケースの実行結果用ヘッダー */
   EXPECT_PERSONAL_TOTAL_AMONT(7, "売上合計（個人）", ColumnType.STRING),
   /** テストケースの実行結果用ヘッダー */
-  EXPECT_PERSONAL_AMOUNT_RATE(4, "売上率（個人）", ColumnType.STRING);
+  EXPECT_PERSONAL_AMOUNT_RATE(8, "売上率（個人）", ColumnType.STRING),
+  /** テストケースの実行結果用ヘッダー */
+  EXPECT_MONTH(9, "月", ColumnType.STRING),
+  /** テストケースの実行結果用ヘッダー */
+  EXPECT_MONTHLY_TOTAL_AMONT(10, "売上合計（月）", ColumnType.STRING),
+  /** テストケースの実行結果用ヘッダー */
+  EXPECT_DAY_OF_WEEK(11, "曜日", ColumnType.STRING);
 
   private int id;
   private String headerName;
