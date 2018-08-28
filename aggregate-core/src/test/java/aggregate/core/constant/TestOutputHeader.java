@@ -6,9 +6,9 @@ package aggregate.core.constant;
 public enum TestOutputHeader implements BaseSheetHeader {
 
   /** 月単位の売上の合計ヘッダー */
-  MONTHLY_TOTAL_AMONT(0, "売上合計（月）", ColumnType.CURRENCY),
+  MONTHLY_TOTAL_AMOUNT(0, "売上合計（月）", ColumnType.CURRENCY),
   /** 個人単位の売上の合計ヘッダー */
-  PERSONAL_TOTAL_AMONT(1, "売上合計（個人）", ColumnType.CURRENCY),
+  PERSONAL_TOTAL_AMOUNT(1, "売上合計（個人）", ColumnType.CURRENCY),
   /** 曜日ヘッダー */
   DAY_OF_WEEK(2, "曜日", ColumnType.DAY_OF_WEEK),
   /** 月ヘッダー */
@@ -20,13 +20,13 @@ public enum TestOutputHeader implements BaseSheetHeader {
   /** テストケースの実行結果用ヘッダー */
   EXPECT_AMOUNT(6, "受注金額", ColumnType.STRING),
   /** テストケースの実行結果用ヘッダー */
-  EXPECT_PERSONAL_TOTAL_AMONT(7, "売上合計（個人）", ColumnType.STRING),
+  EXPECT_PERSONAL_TOTAL_AMOUNT(7, "売上合計（個人）", ColumnType.STRING),
   /** テストケースの実行結果用ヘッダー */
   EXPECT_PERSONAL_AMOUNT_RATE(8, "売上率（個人）", ColumnType.STRING),
   /** テストケースの実行結果用ヘッダー */
   EXPECT_MONTH(9, "月", ColumnType.STRING),
   /** テストケースの実行結果用ヘッダー */
-  EXPECT_MONTHLY_TOTAL_AMONT(10, "売上合計（月）", ColumnType.STRING),
+  EXPECT_MONTHLY_TOTAL_AMOUNT(10, "売上合計（月）", ColumnType.STRING),
   /** テストケースの実行結果用ヘッダー */
   EXPECT_DAY_OF_WEEK(11, "曜日", ColumnType.STRING);
 

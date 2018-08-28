@@ -24,7 +24,7 @@ class RateCalculatorSpecification extends BaseAggregateSpecification {
     // read expected csv file
     def expected = readExpectedFile(params, Constant.QUOTE)
     // aggregate
-    def aggregated = calculator.execute(original, TestOutputHeader.PERSONAL_TOTAL_AMONT,
+    def aggregated = calculator.execute(original, TestOutputHeader.PERSONAL_TOTAL_AMOUNT,
         TestSalesSheetHeader.AMOUNT, TestOutputHeader.PERSONAL_AMOUNT_RATE)
 
     when:
@@ -51,7 +51,7 @@ class RateCalculatorSpecification extends BaseAggregateSpecification {
     BaseSheetHeader[] header =
         [
           TestSalesSheetHeader.PERSON,
-          TestOutputHeader.PERSONAL_TOTAL_AMONT,
+          TestOutputHeader.PERSONAL_TOTAL_AMOUNT,
           TestSalesSheetHeader.ITEM_CODE,
           TestSalesSheetHeader.AMOUNT
         ]
@@ -61,7 +61,7 @@ class RateCalculatorSpecification extends BaseAggregateSpecification {
     BaseSheetHeader[] header =
         [
           TestSalesSheetHeader.PERSON,
-          TestOutputHeader.EXPECT_PERSONAL_TOTAL_AMONT,
+          TestOutputHeader.EXPECT_PERSONAL_TOTAL_AMOUNT,
           TestSalesSheetHeader.ITEM_CODE,
           TestOutputHeader.EXPECT_AMOUNT,
           TestOutputHeader.EXPECT_PERSONAL_AMOUNT_RATE

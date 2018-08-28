@@ -42,7 +42,7 @@ class SummarizerSpecification extends BaseAggregateSpecification {
     assertCompareResult(result)
 
     where:
-    title                        | params | aggregateKey
+    title                        | params  | aggregateKey
     "Summary Amount By Two Keys" | params1 | params1.aggregateKeyHeader
     "Summary By Month"           | params2 | params2.aggregateKey
     "Summary By Day Of Week"     | params3 | params3.aggregateKeyHeader
@@ -86,7 +86,7 @@ class SummarizerSpecification extends BaseAggregateSpecification {
 
   def getExpectedHeaders2() {
     BaseSheetHeader[] header =
-        [TestOutputHeader.EXPECT_MONTH, TestOutputHeader.EXPECT_MONTHLY_TOTAL_AMONT]
+        [TestOutputHeader.EXPECT_MONTH, TestOutputHeader.EXPECT_MONTHLY_TOTAL_AMOUNT]
   }
 
   def getGroupingKeyBuilder2() {
@@ -97,11 +97,11 @@ class SummarizerSpecification extends BaseAggregateSpecification {
   }
 
   def getAggregateKey2() {
-    new AggregateKey(TestSalesSheetHeader.AMOUNT, TestOutputHeader.MONTHLY_TOTAL_AMONT)
+    new AggregateKey(TestSalesSheetHeader.AMOUNT, TestOutputHeader.MONTHLY_TOTAL_AMOUNT)
   }
 
   def getSortKey2() {
-    Arrays.asList(new SortKey(TestOutputHeader.MONTHLY_TOTAL_AMONT, SortType.ASC))
+    Arrays.asList(new SortKey(TestOutputHeader.MONTH, SortType.ASC))
   }
 
   def getParams3() {
