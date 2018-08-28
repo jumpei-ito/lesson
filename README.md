@@ -1,16 +1,20 @@
 # lesson
 
 ## Outline
-
 TODO
+## Environment
+- Windows 10
+- Eclipse 4.8
+- Git Bash
+- Gradle 2.14.1
+- Java 1.8
+- Groovy 2.4.15
 
 ## Set up
-for eclipse.
 1. Clone this repository.
 2. Import 'sales-aggregator' project.
 
 TODO
-
 ## Test Commands
 ### Export Spock Reports
 ```
