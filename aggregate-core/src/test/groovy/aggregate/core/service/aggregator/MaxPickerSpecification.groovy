@@ -52,8 +52,7 @@ class MaxPickerSpecification extends BaseAggregateSpecification {
 
     then:
     def e = thrown(MissingColumnTypeException)
-    println(e)
-    e.getExpected().equals(ColumnType.BIGDECIMAL)
+    assertMissingColumnTypeException(e, ColumnType.BIGDECIMAL)
   }
 
   def getParams1() {
@@ -82,8 +81,6 @@ class MaxPickerSpecification extends BaseAggregateSpecification {
 
   def getExceptionParams() {
     AggregateParameters.builder()
-        .expectedHeaders(expectedHeaders1)
-        .expectedFilePath("bin/maxPicker/maxPicker-result-01.csv")
         .groupingKeyBuilder(Constant.BUILDER_GROUING_BY_PERSON_AND_ITEM)
         .aggregateKeyHeader(TestSalesSheetHeader.DATE)
         .sortKeys(Constant.SORT_KEY_BY_PERSON_AND_ITEM)

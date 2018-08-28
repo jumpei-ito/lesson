@@ -96,6 +96,7 @@ class AggregateParameters {
           expectedHeaders: this.expectedHeaders,
           expectedFilePath: this.expectedFilePath,
           groupingKeyBuilder: this.groupingKeyBuilder,
+          aggregateKey: this.aggregateKey,
           aggregateKeyHeader: this.aggregateKeyHeader,
           sortKeys: this.sortKeys,
           outputHeaders: this.outputHeaders)

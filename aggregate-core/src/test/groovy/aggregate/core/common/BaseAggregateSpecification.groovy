@@ -4,6 +4,8 @@ import static org.junit.Assert.*
 import aggregate.core.AggregateApplication
 import aggregate.core.TestConfig
 import aggregate.core.constant.BaseSheetHeader
+import aggregate.core.constant.ColumnType
+import aggregate.core.exception.MissingColumnTypeException
 import aggregate.core.io.CsvReader
 import aggregate.core.io.Writer
 import aggregate.core.model.ColumnSet
@@ -66,6 +68,11 @@ class BaseAggregateSpecification extends Specification {
     println("Differences between aggregated result and expected result.")
     println("[row] Expected Line <--> Actual Line")
     diffs.each { println it }
+  }
+
+  void assertMissingColumnTypeException(MissingColumnTypeException e, ColumnType expectedType) {
+    println(e)
+    assertTrue(e.getExpected().equals(expectedType))
   }
 
 }

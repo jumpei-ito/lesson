@@ -3,6 +3,7 @@ apply plugin: 'groovy'
 apply plugin: 'jacoco'
 
 // Compile and execute by UTF-8 to read JDK javadoc.
+// Encode setting exists in "gradle.properties" too.
 def defaultEncoding = 'UTF-8'
 tasks.withType(AbstractCompile) each { it.options.encoding = defaultEncoding }
 tasks.withType(GroovyCompile) each { it.groovyOptions.encoding = defaultEncoding }
