@@ -23,7 +23,7 @@ class MaxPickerSpecification extends BaseAggregateSpecification {
   }
 
   @Unroll
-  def "#title Test"() {
+  def "#title"() {
     setup:
     // read expected csv file
     def expected = readExpectedFile(params, Constant.QUOTE)
@@ -39,10 +39,10 @@ class MaxPickerSpecification extends BaseAggregateSpecification {
 
     where:
     title                        | params
-    "Get Max Amount By Two Keys" | params1
+    "Get Max Amount by Two Keys" | params1
   }
 
-  def "Throwing Missing Column Type Exception Test"() {
+  def "Throwing Missing Column Type Exception"() {
     setup:
     def params = exceptionParams
 

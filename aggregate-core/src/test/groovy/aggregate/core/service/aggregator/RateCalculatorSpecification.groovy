@@ -17,7 +17,7 @@ class RateCalculatorSpecification extends BaseAggregateSpecification {
   }
 
   @Unroll
-  def "#title Test"() {
+  def "#title"() {
     setup:
     // read original csv file
     def original = readOriginalFile(params)
@@ -34,8 +34,8 @@ class RateCalculatorSpecification extends BaseAggregateSpecification {
     assertCompareResult(result)
 
     where:
-    title                            | params
-    "Calculate Amount Rate Per Item" | params1
+    title                                 | params
+    "Calculate Amount Rate for Each Item" | params1
   }
 
   def getParams1() {

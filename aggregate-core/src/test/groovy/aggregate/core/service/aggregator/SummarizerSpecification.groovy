@@ -27,7 +27,7 @@ class SummarizerSpecification extends BaseAggregateSpecification {
   }
 
   @Unroll
-  def "#title Test"() {
+  def "Summary #title"() {
     setup:
     // read expected csv file
     def expected = readExpectedFile(params, Constant.QUOTE)
@@ -42,13 +42,13 @@ class SummarizerSpecification extends BaseAggregateSpecification {
     assertCompareResult(result)
 
     where:
-    title                        | params  | aggregateKey
-    "Summary Amount By Two Keys" | params1 | params1.aggregateKeyHeader
-    "Summary By Month"           | params2 | params2.aggregateKey
-    "Summary By Day Of Week"     | params3 | params3.aggregateKeyHeader
+    title                   | params  | aggregateKey
+    "Amount by Two Keys"    | params1 | params1.aggregateKeyHeader
+    "Amount by Month"       | params2 | params2.aggregateKey
+    "Amount by Day of Week" | params3 | params3.aggregateKeyHeader
   }
 
-  def "Throwing Missing Column Type Exception Test"() {
+  def "Throwing Missing Column Type Exception"() {
     setup:
     def params = exceptionParams
 

@@ -20,7 +20,7 @@ class CounterSpecification extends BaseAggregateSpecification {
   }
 
   @Unroll
-  def "#title Test"() {
+  def "Count #title"() {
     setup:
     // read original csv file
     def original = readOriginalFile(params)
@@ -37,9 +37,9 @@ class CounterSpecification extends BaseAggregateSpecification {
     assertCompareResult(result)
 
     where:
-    title                     | params
-    "Count Two Grouping Keys" | params1
-    "Count By Third Header"   | params2
+    title                  | params
+    "by Two Grouping Keys" | params1
+    "by Third Header"      | params2
   }
 
   def getParams1() {
