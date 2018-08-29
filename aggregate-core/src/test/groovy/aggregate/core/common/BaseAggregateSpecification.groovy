@@ -13,18 +13,16 @@ import spock.lang.Specification
 
 class BaseAggregateSpecification extends Specification {
 
+  /** Spring boot up */
+  static final AggregateApplication application = new AggregateApplication(TestConfig.class)
+  //**  */
   static Map<String, List<ColumnSet>> files = new HashMap()
-  def comparator = new ColumnSetComparator()
 
-  AggregateApplication application
+  def comparator = new ColumnSetComparator()
   CsvReader reader
   Writer writer
-  //  Counter counter
-
 
   def setup() {
-    // Spring boot up
-    application = new AggregateApplication(TestConfig.class)
     // create components
     reader = application.getBean(CsvReader.class)
     writer = application.getBean(Writer.class)
@@ -41,15 +39,15 @@ class BaseAggregateSpecification extends Specification {
     assertFalse(result.isDifferent)
   }
 
-  def readOriginalFile(AggregateParameters params) {
+  def readOriginalFile(BaseParameters params) {
     readFile(params.originalHeaders, params.originalFilePath, null)
   }
 
-  def readExpectedFile(AggregateParameters params) {
+  def readExpectedFile(BaseParameters params) {
     readFile(params.expectedHeaders, params.expectedFilePath, null)
   }
 
-  def readExpectedFile(AggregateParameters params, String quote) {
+  def readExpectedFile(BaseParameters params, String quote) {
     readFile(params.expectedHeaders, params.expectedFilePath, quote)
   }
 
