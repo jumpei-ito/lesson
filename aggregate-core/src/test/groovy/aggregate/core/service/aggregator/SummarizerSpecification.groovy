@@ -90,10 +90,10 @@ class SummarizerSpecification extends BaseAggregateSpecification {
   }
 
   def getGroupingKeyBuilder2() {
-    GroupingKeysBuilder builder = new GroupingKeysBuilder();
+    GroupingKeysBuilder builder = new GroupingKeysBuilder()
     builder.addFunctionKey(FunctionUtils.getMonthGroupingFunction(TestSalesSheetHeader.DATE),
-        TestOutputHeader.MONTH);
-    return builder;
+        TestOutputHeader.MONTH)
+    return builder
   }
 
   def getAggregateKey2() {
@@ -120,10 +120,10 @@ class SummarizerSpecification extends BaseAggregateSpecification {
   }
 
   def getGroupingKeyBuilder3() {
-    GroupingKeysBuilder builder = new GroupingKeysBuilder();
+    GroupingKeysBuilder builder = new GroupingKeysBuilder()
     builder.addFunctionKey(FunctionUtils.getDayOfWeekGroupingFunction(TestSalesSheetHeader.DATE),
-        TestOutputHeader.DAY_OF_WEEK);
-    return builder;
+        TestOutputHeader.DAY_OF_WEEK)
+    return builder
   }
 
   def getSortKey3() {

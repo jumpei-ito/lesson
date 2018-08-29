@@ -70,12 +70,12 @@ class CounterSpecification extends BaseAggregateSpecification {
   }
 
   def getGroupingKeyBuilder2() {
-    GroupingKeysBuilder builder = new GroupingKeysBuilder();
-    builder.addHeaderKey(TestSalesSheetHeader.ITEM_CODE);
-    return builder;
+    GroupingKeysBuilder builder = new GroupingKeysBuilder()
+    builder.addHeaderKey(TestSalesSheetHeader.ITEM_CODE)
+    return builder
   }
 
   def getSortKeys2() {
-    Arrays.asList(new SortKey(TestSalesSheetHeader.ITEM_CODE, SortType.ASC));
+    Arrays.asList(new SortKey(TestSalesSheetHeader.ITEM_CODE, SortType.ASC))
   }
 }

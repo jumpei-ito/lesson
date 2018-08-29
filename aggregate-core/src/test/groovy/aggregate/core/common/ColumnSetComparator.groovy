@@ -30,7 +30,7 @@ class ColumnSetComparator {
       List<ColumnSet> aggregated) {
     String originalHeader = writer.getHeaderLine(expected.get(0))
     String aggregatedHeader = writer.getHeaderLine(aggregated.get(0))
-    return getDiffString(1, originalHeader, aggregatedHeader)
+    getDiffString(1, originalHeader, aggregatedHeader)
   }
 
   private void compareLine(int index, ColumnSet expected, ColumnSet aggregated,
