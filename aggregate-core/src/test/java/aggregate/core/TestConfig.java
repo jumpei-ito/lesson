@@ -1,5 +1,6 @@
 package aggregate.core;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.context.annotation.Bean;
 import aggregate.core.constant.BaseSheetHeader;
@@ -11,7 +12,7 @@ public class TestConfig extends AggregateConfig {
 
   @Override
   public String csvFilePath() {
-    return "bin/SalesList.csv";
+    return "bin/TestSalesList.csv";
   }
 
   @Override
@@ -33,7 +34,7 @@ public class TestConfig extends AggregateConfig {
 
     @Override
     public List<ColumnSet> aggregate(List<ColumnSet> columnSets) {
-      return null;
+      return new ArrayList<>();
     }
 
   }
