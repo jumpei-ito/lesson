@@ -2,17 +2,12 @@ package aggregate.core.model.grouping;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import aggregate.core.model.ColumnSet;
 import aggregate.core.model.grouping.GroupingKey.GroupingKeyBuilder;
 
 public class GroupingKeys {
 
   private List<GroupingKey> groupingKeys;
-
-  public GroupingKeys(List<GroupingKey> groupingKeys) {
-    this.groupingKeys = groupingKeys;
-  }
 
   public GroupingKeys(ColumnSet columnSet, List<GroupingKeyBuilder> builders) {
     this.groupingKeys = builders.stream().map(builder -> builder.columnSet(columnSet).build())
