@@ -121,6 +121,7 @@ public class ColumnSet {
     if (!containsHeaders(headers) || !columnSet.containsHeaders(headers)) {
       throw new RuntimeException("Illegal headers: " + headers);
     }
+    // TODO: fix compare logic to equals and if one header is false then return.
     return headers.stream()
         .mapToInt(header -> columnSet.getColumn(header).compareTo(this.getColumn(header))).sum();
   }

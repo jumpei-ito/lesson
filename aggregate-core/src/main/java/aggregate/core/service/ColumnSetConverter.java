@@ -101,6 +101,7 @@ public class ColumnSetConverter {
   private ColumnSet mergeColumns(ColumnSet to, ColumnSet from, List<BaseSheetHeader> primaryKey,
       BaseSheetHeader after) {
     from.getHeaders().stream().filter(header -> !primaryKey.contains(header))
+        .sorted((h1, h2) -> from.getColumn(h2).getNo() - from.getColumn(h1).getNo())
         .forEach(header -> to.insertColumn(header, after, from.getColumn(header)));
     return to;
   }
