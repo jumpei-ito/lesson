@@ -15,7 +15,7 @@ import aggregate.core.service.aggregator.Summarizer
 import aggregate.core.util.FunctionUtils
 import spock.lang.Unroll
 
-class ColumnSetConverterSpecification extends BaseAggregateSpecification {
+class ConvertColumnSetSpecification extends BaseAggregateSpecification {
 
   static final String ORIGINAL_FILE_PATH_FOR_CONVERT = "bin/converter/convert-original-01.csv"
 

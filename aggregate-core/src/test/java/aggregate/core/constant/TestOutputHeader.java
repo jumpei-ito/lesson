@@ -16,7 +16,7 @@ public enum TestOutputHeader implements BaseSheetHeader {
   /** 個人単位の売上率ヘッダー */
   PERSONAL_AMOUNT_RATE(4, "売上率（個人）", ColumnType.PERCENT),
   /** 個数ヘッダー **/
-  COUNT(5, "個数", ColumnType.BIGDECIMAL),
+  COUNT(5, "受注数", ColumnType.BIGDECIMAL),
   /** テストケースの実行結果用ヘッダー */
   EXPECT_AMOUNT(6, "受注金額", ColumnType.STRING),
   /** テストケースの実行結果用ヘッダー */
