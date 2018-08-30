@@ -1,4 +1,4 @@
-package aggregate.core.service
+package aggregate.core.service.converter
 
 import java.util.stream.Collectors
 import aggregate.core.Constant
@@ -9,6 +9,7 @@ import aggregate.core.constant.TestOutputHeader
 import aggregate.core.constant.TestSalesSheetHeader
 import aggregate.core.model.ColumnSet
 import aggregate.core.model.grouping.GroupingKeysBuilder
+import aggregate.core.service.ColumnSetConverter
 import aggregate.core.service.aggregator.MaxPicker
 import aggregate.core.service.aggregator.Summarizer
 import aggregate.core.util.FunctionUtils
