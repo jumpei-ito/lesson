@@ -41,9 +41,9 @@ class RateCalculatorSpecification extends BaseAggregateSpecification {
   def getParams1() {
     AggregateParameters.builder()
         .originalHeaders(originalHeaders1)
-        .originalFilePath("bin/rate/rateCalculator-original-01.csv")
+        .originalFilePath("bin/rate/rateCalculator-01-original.csv")
         .expectedHeaders(expectedHeaders1)
-        .expectedFilePath("bin/rate/rateCalculator-result-01.csv")
+        .expectedFilePath("bin/rate/rateCalculator-01-result.csv")
         .build()
   }
 

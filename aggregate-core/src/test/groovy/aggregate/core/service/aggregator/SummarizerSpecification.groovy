@@ -64,7 +64,7 @@ class SummarizerSpecification extends BaseAggregateSpecification {
   def getParams1() {
     AggregateParameters.builder()
         .expectedHeaders(expectedHeaders1)
-        .expectedFilePath("bin/summarizer/summarizer-result-01.csv")
+        .expectedFilePath("bin/summarizer/summarizer-01-result.csv")
         .groupingKeyBuilder(Constant.BUILDER_GROUING_BY_PERSON_AND_ITEM)
         .aggregateKeyHeader(TestSalesSheetHeader.AMOUNT)
         .sortKeys(Constant.SORT_KEY_BY_PERSON_AND_ITEM).build()
@@ -78,7 +78,7 @@ class SummarizerSpecification extends BaseAggregateSpecification {
   def getParams2() {
     AggregateParameters.builder()
         .expectedHeaders(expectedHeaders2)
-        .expectedFilePath("bin/summarizer/summarizer-result-02.csv")
+        .expectedFilePath("bin/summarizer/summarizer-02-result.csv")
         .groupingKeyBuilder(groupingKeyBuilder2)
         .aggregateKey(aggregateKey2)
         .sortKeys(sortKey2).build()
@@ -107,7 +107,7 @@ class SummarizerSpecification extends BaseAggregateSpecification {
   def getParams3() {
     AggregateParameters.builder()
         .expectedHeaders(expectedHeaders3)
-        .expectedFilePath("bin/summarizer/summarizer-result-03.csv")
+        .expectedFilePath("bin/summarizer/summarizer-03-result.csv")
         .groupingKeyBuilder(groupingKeyBuilder3)
         .aggregateKeyHeader(TestSalesSheetHeader.AMOUNT)
         .sortKeys(sortKey3)

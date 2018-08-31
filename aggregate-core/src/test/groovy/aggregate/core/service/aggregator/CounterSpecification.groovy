@@ -45,7 +45,7 @@ class CounterSpecification extends BaseAggregateSpecification {
   def getParams1() {
     AggregateParameters.builder()
         .expectedHeaders(expectedHeaders1)
-        .expectedFilePath("bin/counter/counter-result-01.csv")
+        .expectedFilePath("bin/counter/counter-01-result.csv")
         .groupingKeyBuilder(Constant.BUILDER_GROUING_BY_PERSON_AND_ITEM)
         .aggregateKeyHeader(TestOutputHeader.COUNT)
         .sortKeys(Constant.SORT_KEY_BY_PERSON_AND_ITEM).build()
@@ -59,7 +59,7 @@ class CounterSpecification extends BaseAggregateSpecification {
   def getParams2() {
     AggregateParameters.builder()
         .expectedHeaders(expectedHeaders2)
-        .expectedFilePath("bin/counter/counter-result-02.csv")
+        .expectedFilePath("bin/counter/counter-02-result.csv")
         .groupingKeyBuilder(groupingKeyBuilder2)
         .aggregateKeyHeader(TestOutputHeader.COUNT)
         .sortKeys(sortKeys2).build()

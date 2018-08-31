@@ -17,7 +17,7 @@ import spock.lang.Unroll
 
 class ConvertColumnSetSpecification extends BaseAggregateSpecification {
 
-  static final String ORIGINAL_FILE_PATH_FOR_CONVERT = "bin/converter/convert-original-01.csv"
+  static final String ORIGINAL_FILE_PATH_FOR_CONVERT = "bin/converter/convert-01-original.csv"
 
   ColumnSetConverter converter
 
@@ -53,7 +53,7 @@ class ConvertColumnSetSpecification extends BaseAggregateSpecification {
         originalHeaders: originalHeaders,
         originalFilePath: ORIGINAL_FILE_PATH_FOR_CONVERT,
         expectedHeaders: expectedHeaders,
-        expectedFilePath: "bin/converter/convert-result-01.csv",
+        expectedFilePath: "bin/converter/convert-01-result.csv",
         groupingKeyBuilder: groupingKeyBuilder,
         aggregateKey: TestSalesSheetHeader.AMOUNT,
         summarizer: application.getBean(Summarizer.class))
@@ -85,7 +85,7 @@ class ConvertColumnSetSpecification extends BaseAggregateSpecification {
         originalHeaders: originalHeaders,
         originalFilePath: ORIGINAL_FILE_PATH_FOR_CONVERT,
         expectedHeaders: expectedHeaders,
-        expectedFilePath: "bin/converter/convert-result-02.csv",
+        expectedFilePath: "bin/converter/convert-02-result.csv",
         groupingKeyBuilder: groupingKeyBuilder,
         aggregateKey: TestSalesSheetHeader.AMOUNT,
         outputHeaders: outputHeaders,

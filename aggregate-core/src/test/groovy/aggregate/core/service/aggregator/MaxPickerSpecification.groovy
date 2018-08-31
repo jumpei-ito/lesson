@@ -58,7 +58,7 @@ class MaxPickerSpecification extends BaseAggregateSpecification {
   def getParams1() {
     AggregateParameters.builder()
         .expectedHeaders(expectedHeaders1)
-        .expectedFilePath("bin/maxPicker/maxPicker-result-01.csv")
+        .expectedFilePath("bin/maxPicker/maxPicker-01-result.csv")
         .groupingKeyBuilder(Constant.BUILDER_GROUING_BY_PERSON_AND_ITEM)
         .aggregateKeyHeader(TestSalesSheetHeader.AMOUNT)
         .sortKeys(Constant.SORT_KEY_BY_PERSON_AND_ITEM)
