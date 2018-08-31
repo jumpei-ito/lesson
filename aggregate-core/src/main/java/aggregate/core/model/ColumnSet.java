@@ -117,13 +117,16 @@ public class ColumnSet {
     return sb.substring(0, sb.length() - 1);
   }
 
-  public int compareTo(ColumnSet columnSet, List<BaseSheetHeader> headers) {
+  public boolean equalsByHeaders(ColumnSet columnSet, List<BaseSheetHeader> headers) {
     if (!containsHeaders(headers) || !columnSet.containsHeaders(headers)) {
       throw new RuntimeException("Illegal headers: " + headers);
     }
-    // TODO: fix compare logic to equals and if one header is false then return.
-    return headers.stream()
-        .mapToInt(header -> columnSet.getColumn(header).compareTo(this.getColumn(header))).sum();
+    for (BaseSheetHeader header : headers) {
+      if (!columnSet.getColumn(header).equals(this.getColumn(header))) {
+        return false;
+      }
+    }
+    return true;
   }
 
 }

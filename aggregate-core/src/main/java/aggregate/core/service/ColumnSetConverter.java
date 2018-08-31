@@ -93,7 +93,7 @@ public class ColumnSetConverter {
 
   private List<ColumnSet> mergeColumnSet(List<ColumnSet> to, ColumnSet from,
       List<BaseSheetHeader> primaryKey, BaseSheetHeader after) {
-    return to.stream().filter(columnSet -> columnSet.compareTo(from, primaryKey) == 0)
+    return to.stream().filter(columnSet -> columnSet.equalsByHeaders(from, primaryKey))
         .map(columnSet -> mergeColumns(columnSet, from, primaryKey, after))
         .collect(Collectors.toList());
   }
