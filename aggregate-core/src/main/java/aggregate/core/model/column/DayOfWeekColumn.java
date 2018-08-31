@@ -3,7 +3,6 @@ package aggregate.core.model.column;
 import java.time.DayOfWeek;
 import java.time.format.TextStyle;
 import java.util.Locale;
-
 import aggregate.core.util.CastUtils;
 
 public class DayOfWeekColumn extends Column {
@@ -11,15 +10,24 @@ public class DayOfWeekColumn extends Column {
   private DayOfWeek value;
 
   public DayOfWeekColumn(int no, String value) {
-    super(no, DayOfWeek.valueOf(value).getDisplayName(TextStyle.FULL, Locale.JAPANESE));
+    super(no, getDisplayName(DayOfWeek.valueOf(value)));
     this.value = DayOfWeek.valueOf(value);
   }
 
   public DayOfWeekColumn(int no, DayOfWeek value) {
-    super(no, value.getDisplayName(TextStyle.FULL, Locale.JAPANESE));
+    super(no, getDisplayName(value));
     this.value = value;
   }
 
+  private static String getDisplayName(DayOfWeek value) {
+    return value.getDisplayName(TextStyle.FULL, Locale.JAPANESE);
+  }
+
+  /**
+   * Getter of value.
+   *
+   * @return Column value
+   */
   public DayOfWeek getValue() {
     return value;
   }

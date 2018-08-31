@@ -3,7 +3,6 @@ package aggregate.core.model.column;
 import java.time.Month;
 import java.time.format.TextStyle;
 import java.util.Locale;
-
 import aggregate.core.util.CastUtils;
 
 public class MonthColumn extends Column {
@@ -11,15 +10,24 @@ public class MonthColumn extends Column {
   private Month value;
 
   public MonthColumn(int no, String value) {
-    super(no, Month.valueOf(value).getDisplayName(TextStyle.FULL, Locale.JAPANESE));
+    super(no, getDisplayName(Month.valueOf(value)));
     this.value = Month.valueOf(value);
   }
 
   public MonthColumn(int no, Month value) {
-    super(no, value.getDisplayName(TextStyle.FULL, Locale.JAPANESE));
+    super(no, getDisplayName(value));
     this.value = value;
   }
 
+  private static String getDisplayName(Month value) {
+    return value.getDisplayName(TextStyle.FULL, Locale.JAPANESE);
+  }
+
+  /**
+   * Getter of value.
+   * 
+   * @return Column value
+   */
   public Month getValue() {
     return value;
   }
