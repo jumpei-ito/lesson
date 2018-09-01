@@ -14,7 +14,7 @@ import aggregate.core.model.ColumnSet;
 public class AggregateService {
 
   @Autowired
-  CsvReader reader;
+  private CsvReader reader;
   @Autowired
   private Writer writer;
 
