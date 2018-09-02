@@ -1,4 +1,4 @@
-package aggregate.core
+package aggregate.core.common
 
 import aggregate.core.constant.SortType
 import aggregate.core.constant.TestSalesSheetHeader

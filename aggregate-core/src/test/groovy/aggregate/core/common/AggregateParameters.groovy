@@ -1,6 +1,5 @@
 package aggregate.core.common
 
-import aggregate.core.Constant
 import aggregate.core.constant.BaseSheetHeader
 import aggregate.core.model.AggregateKey
 import aggregate.core.model.SortKey

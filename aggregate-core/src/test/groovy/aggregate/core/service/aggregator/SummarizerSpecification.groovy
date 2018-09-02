@@ -1,8 +1,8 @@
 package aggregate.core.service.aggregator
 
-import aggregate.core.Constant
 import aggregate.core.common.AggregateParameters
 import aggregate.core.common.BaseAggregateSpecification
+import aggregate.core.common.Constant
 import aggregate.core.constant.BaseSheetHeader
 import aggregate.core.constant.ColumnType
 import aggregate.core.constant.SortType
