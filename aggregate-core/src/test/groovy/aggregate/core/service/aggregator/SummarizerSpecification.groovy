@@ -91,7 +91,7 @@ class SummarizerSpecification extends BaseAggregateSpecification {
 
   def getGroupingKeyBuilder2() {
     GroupingKeysBuilder builder = new GroupingKeysBuilder()
-    builder.addFunctionKey(FunctionUtils.getMonthGroupingFunction(TestSalesSheetHeader.DATE),
+    builder.addFunctionKey(FunctionUtils.getMonthValue(TestSalesSheetHeader.DATE),
         TestOutputHeader.MONTH)
     return builder
   }
@@ -121,7 +121,7 @@ class SummarizerSpecification extends BaseAggregateSpecification {
 
   def getGroupingKeyBuilder3() {
     GroupingKeysBuilder builder = new GroupingKeysBuilder()
-    builder.addFunctionKey(FunctionUtils.getDayOfWeekGroupingFunction(TestSalesSheetHeader.DATE),
+    builder.addFunctionKey(FunctionUtils.getDayOfWeekValue(TestSalesSheetHeader.DATE),
         TestOutputHeader.DAY_OF_WEEK)
     return builder
   }

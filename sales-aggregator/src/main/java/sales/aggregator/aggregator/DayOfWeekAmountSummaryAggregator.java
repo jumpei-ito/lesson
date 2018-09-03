@@ -35,7 +35,7 @@ public class DayOfWeekAmountSummaryAggregator implements BaseAggregator {
 
   private GroupingKeysBuilder getGroupingKeysBuilders() {
     GroupingKeysBuilder builder = new GroupingKeysBuilder();
-    builder.addFunctionKey(FunctionUtils.getDayOfWeekGroupingFunction(SalesSheetHeader.DATE),
+    builder.addFunctionKey(FunctionUtils.getDayOfWeekValue(SalesSheetHeader.DATE),
         OutputHeader.DAY_OF_WEEK);
     return builder;
   }

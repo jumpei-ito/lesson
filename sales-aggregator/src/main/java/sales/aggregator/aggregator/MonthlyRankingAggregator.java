@@ -37,7 +37,7 @@ public class MonthlyRankingAggregator implements BaseAggregator {
 
   private GroupingKeysBuilder getGroupingKeys() {
     GroupingKeysBuilder builder = new GroupingKeysBuilder();
-    builder.addFunctionKey(FunctionUtils.getMonthGroupingFunction(SalesSheetHeader.DATE),
+    builder.addFunctionKey(FunctionUtils.getMonthValue(SalesSheetHeader.DATE),
         OutputHeader.MONTH);
     builder.addHeaderKey(SalesSheetHeader.PERSON);
     return builder;

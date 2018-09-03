@@ -79,7 +79,7 @@ public class MonthlyTopSalesAggregator implements BaseAggregator {
   private GroupingKeysBuilder getGroupingKeysByMonthAndPerson() {
     GroupingKeysBuilder builder = new GroupingKeysBuilder();
     // first grouping key
-    builder.addFunctionKey(FunctionUtils.getMonthGroupingFunction(SalesSheetHeader.DATE),
+    builder.addFunctionKey(FunctionUtils.getMonthValue(SalesSheetHeader.DATE),
         OutputHeader.MONTH);
     // second grouping key
     builder.addHeaderKey(SalesSheetHeader.PERSON);
