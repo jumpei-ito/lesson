@@ -1,7 +1,16 @@
 package aggregate.core.model.column;
 
+/**
+ * Column class for String value.
+ */
 public class StringColumn extends Column {
 
+  /**
+   * Constructor
+   *
+   * @param no Column number
+   * @param value Column value
+   */
   public StringColumn(int no, String value) {
     super(no, value);
   }

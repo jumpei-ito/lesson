@@ -3,7 +3,7 @@ package aggregate.core.model.column;
 import aggregate.core.constant.Constant;
 
 /**
- * カラムの値を保持する抽象クラス
+ * Abstract class for csv column data.
  */
 public abstract class Column {
 
@@ -12,9 +12,9 @@ public abstract class Column {
 
   /**
    * Constructor<br>
-   * 列Noは0とする
+   * Assign 0 to column number.
    *
-   * @param stringValue 値を表す文字列
+   * @param stringValue Value as String
    */
   public Column(String stringValue) {
     this.no = 0;
@@ -24,8 +24,8 @@ public abstract class Column {
   /**
    * Constructor
    *
-   * @param no 列No
-   * @param stringValue 値を表す文字列
+   * @param no Column number
+   * @param stringValue Column value as String
    */
   public Column(int no, String stringValue) {
     this.no = no;
@@ -33,61 +33,61 @@ public abstract class Column {
   }
 
   /**
-   * {@link Column}のインスタンスと内容を比較する<br>
+   * Compare two {@link Column} values numerically.
    *
-   * @param column
-   * @return 内容が同じ場合：0, 内容が異なる場合：差分
+   * @param column The Column to be compared
+   * @return The value 0 if this Column is equal to the argument Column, other value otherwise.
    */
   public abstract int compareTo(Column column);
 
   /**
-   * {@link Column}のインスタンスと内容を比較する<br>
+   * Compare two {@link Column} values.
    *
-   * @param column {@link Column}
-   * @return 内容が同じ場合true
+   * @param column The Column to be compared
+   * @return true if the Columns are the same, false otherwise.
    */
   public abstract boolean equals(Column column);
 
   /**
-   * 列Noのgetter
+   * Getter of no.
    *
-   * @return no 列No
+   * @return no Column number
    */
   public int getNo() {
     return no;
   }
 
   /**
-   * 列Noのsetter
+   * Setter of no.
    *
-   * @param no 列No
+   * @param no Column number
    */
   public void setNo(int no) {
     this.no = no;
   }
 
   /**
-   * 値を表す文字列を取得する
+   * Getter of stringValue.
    *
-   * @return 値を表す文字列
+   * @return Column value as String
    */
   public String getValueAsString() {
     return stringValue;
   }
 
   /**
-   * 出力用の値を表す文字列を取得する
+   * Getter of formatted column value for output.
    *
-   * @return 出力用の値を表す文字列
+   * @return Formatted column value for output
    */
   public String getOutputValue() {
     return Constant.DOUBLE_QUOTATION + getValueAsString() + Constant.DOUBLE_QUOTATION;
   }
 
   /**
-   * {@link Column}を複製する
+   * Creates and returns a copy of this object.
    *
-   * return {@link Column}
+   * return a clone of this instance
    */
   public abstract Column clone();
 

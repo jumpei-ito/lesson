@@ -2,25 +2,22 @@ package aggregate.core.model.column;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-
 import aggregate.core.util.CastUtils;
 
 /**
- * 数値のカラムの値を保持するクラス<br>
- * 出力用文字列のフォーマットを指定することが可能
+ * Column Class for number value.<br>
+ * Allowed to assign number format of output.
  */
 public class BigDecimalColumn extends Column {
 
-  /** 出力フォーマット */
   private DecimalFormat outputFormat;
-  /** カラム値 */
   private BigDecimal value;
 
   /**
    * Constructor
    *
-   * @param value 数値
-   * @param outputFormat 出力フォーマット
+   * @param value Column value of number
+   * @param outputFormat Format for output
    */
   public BigDecimalColumn(BigDecimal value, DecimalFormat outputFormat) {
     super(outputFormat.format(value));
@@ -31,9 +28,9 @@ public class BigDecimalColumn extends Column {
   /**
    * Constructor
    *
-   * @param no 列No
-   * @param value 数値を表す文字列
-   * @param outputFormat 出力フォーマット
+   * @param no Column number
+   * @param value Column value of number as String
+   * @param outputFormat Format for output
    */
   public BigDecimalColumn(int no, String value, DecimalFormat outputFormat) {
     super(no, outputFormat.format(new BigDecimal(value)));
@@ -44,9 +41,9 @@ public class BigDecimalColumn extends Column {
   /**
    * Constructor
    *
-   * @param no 列No
-   * @param value 数値
-   * @param outputFormat 出力フォーマット
+   * @param no Column number
+   * @param value Column value of number
+   * @param outputFormat Format for output
    */
   public BigDecimalColumn(int no, BigDecimal value, DecimalFormat outputFormat) {
     super(no, outputFormat.format(value));
@@ -55,9 +52,9 @@ public class BigDecimalColumn extends Column {
   }
 
   /**
-   * カラム値のgetter
+   * Getter of value.
    *
-   * @return カラム値
+   * @return Column value
    */
   public BigDecimal getValue() {
     return value;

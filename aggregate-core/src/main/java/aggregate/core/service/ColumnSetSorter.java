@@ -11,9 +11,19 @@ import aggregate.core.constant.BaseSheetHeader;
 import aggregate.core.model.ColumnSet;
 import aggregate.core.model.SortKey;
 
+/**
+ * Class to sort list of ColumnSet.
+ */
 @Component
 public class ColumnSetSorter {
 
+  /**
+   * Sorts argument list of ColumnSet by sort conditions.
+   *
+   * @param columnSets List of ColumnSet to be sorted
+   * @param sortKeys Sort conditions
+   * @return Sorted ColumnSet list
+   */
   public List<ColumnSet> sortColumnSets(List<ColumnSet> columnSets, List<SortKey> sortKeys) {
     validateBeforeSort(columnSets, sortKeys);
     return columnSets.stream().sorted(getComparator(sortKeys)).collect(Collectors.toList());

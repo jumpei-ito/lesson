@@ -1,36 +1,36 @@
 package aggregate.core.constant;
 
 /**
- * CSV、出力用ヘッダーのインターフェース
+ * Interface of header for csv files.
  */
 public interface BaseSheetHeader {
 
   /**
-   * ヘッダーIDのgetter
+   * Getter of header id.
    *
-   * @return ヘッダーID
+   * @return Header id
    */
   int getId();
 
   /**
-   * ヘッダー名のgetter
+   * Getter of header name.
    *
-   * @return ヘッダー名
+   * @return Header name
    */
   String getHeaderName();
 
   /**
-   * {@link ColumnType}のgetter
+   * Getter of {@link ColumnType}.
    *
    * @return {@link ColumnType}
    */
   ColumnType getColumnType();
 
   /**
-   * 比較メソッド
+   * Compare two {@link BaseSheetHeader} values.
    *
-   * @param header
-   * @return ヘッダークラス、ヘッダーIDが同じ場合true
+   * @param header The BaseSheetHeader to be compared
+   * @return true if the BaseSheetHeaders are the same, false otherwise.
    */
   default boolean equals(BaseSheetHeader header) {
     return this.getClass() == header.getClass() && getId() == header.getId();

@@ -3,21 +3,21 @@ package aggregate.core.constant;
 import java.text.DecimalFormat;
 
 /**
- * 定数を保持するクラス
+ * Constant holder class.
  */
 public class Constant {
 
-  /** カンマ（,） */
+  /** Comma（,） */
   public static final String COMMA = ",";
-  /** ダブルクオーテーション（"） */
+  /** Double quotation（"） */
   public static final String DOUBLE_QUOTATION = "\"";
-  /** 数値カラムのフォーマット */
+  /** Format of number column. */
   public static final DecimalFormat NUMBER_FORMAT = new DecimalFormat("#,###.##");
-  /** 金額カラムのフォーマット */
+  /** Format of currency column. */
   public static final DecimalFormat CURRENCY_FORMAT = new DecimalFormat("#,###円");
-  /** 割合カラムのフォーマット */
+  /** Format of rate column. */
   public static final DecimalFormat PERCENT_FORMAT = new DecimalFormat("##0.0%");
-  /** CSVファイルのパスを表すプロパティ名 */
+  /** Property name of original csv file path. */
   public static final String P_CSV_FILE_PATH = "csvFilePath";
 
 }

@@ -6,25 +6,50 @@ import java.util.stream.Collectors;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import aggregate.core.service.BaseAggregator;
 
+/**
+ * Class to control Spring context.
+ */
 public class AggregateApplication {
 
   private final AnnotationConfigApplicationContext context;
   private final List<BaseAggregator> aggregators;
 
+  /**
+   * Constructor
+   *
+   * @param clazz Config class for Spring
+   */
   public AggregateApplication(Class<?> clazz) {
     validateConfigClass(clazz);
     context = new AnnotationConfigApplicationContext(clazz);
     aggregators = getAggregators(context);
   }
 
+  /**
+   * Getter of aggregators.
+   *
+   * @return Aggregator instances implements {@link BaseAggregator}
+   */
   public List<BaseAggregator> getAggregators() {
     return aggregators;
   }
 
+  /**
+   * Getter of Bean.
+   *
+   * @param clazz Bean class
+   * @return Bean instance
+   */
   public <T> T getBean(Class<T> clazz) {
     return context.getBean(clazz);
   }
 
+  /**
+   * Getter of property from Bean.
+   *
+   * @param name Property name
+   * @return Property value
+   */
   public String getProperty(String name) {
     return context.getBean(name, String.class);
   }

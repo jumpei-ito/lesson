@@ -1,23 +1,23 @@
 package aggregate.core.constant;
 
 /**
- * カラム種別
+ * Type of columns.
  */
 public enum ColumnType {
 
-  /** 文字列 */
+  /** String */
   STRING(0),
-  /** 数値 */
+  /** Number */
   BIGDECIMAL(1),
-  /** 日付 */
+  /** Date */
   DATE(2),
-  /** 月 */
+  /** Month */
   MONTH(3),
-  /** 曜日 */
+  /** Day of week */
   DAY_OF_WEEK(4),
-  /** 金額 */
+  /** Currency (JPY) */
   CURRENCY(5),
-  /** 割合 */
+  /** Percent, Rate */
   PERCENT(6);
 
   private int id;
@@ -27,7 +27,7 @@ public enum ColumnType {
   }
 
   /**
-   * idのgetter
+   * Getter of id
    *
    * @return id
    */
@@ -36,10 +36,10 @@ public enum ColumnType {
   }
 
   /**
-   * {@link ColumnType}との比較
+   * Compare two {@link ColumnType} values.
    *
-   * @param columnType {@link ColumnType}
-   * @return idが同じ場合true
+   * @param columnType The ColumnType to be compared
+   * @return true if the ColumnTypes are the same, false otherwise.
    */
   public boolean equals(ColumnType columnType) {
     return this.id == columnType.getId();

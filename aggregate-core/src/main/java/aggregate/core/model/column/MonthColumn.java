@@ -5,15 +5,30 @@ import java.time.format.TextStyle;
 import java.util.Locale;
 import aggregate.core.util.CastUtils;
 
+/**
+ * Column Class for Month value.
+ */
 public class MonthColumn extends Column {
 
   private Month value;
 
+  /**
+   * Constructor
+   *
+   * @param no Column number
+   * @param value Column value of month as String
+   */
   public MonthColumn(int no, String value) {
     super(no, getDisplayName(Month.valueOf(value)));
     this.value = Month.valueOf(value);
   }
 
+  /**
+   * Constructor
+   *
+   * @param no Column number
+   * @param value Column value of month
+   */
   public MonthColumn(int no, Month value) {
     super(no, getDisplayName(value));
     this.value = value;
@@ -25,7 +40,7 @@ public class MonthColumn extends Column {
 
   /**
    * Getter of value.
-   * 
+   *
    * @return Column value
    */
   public Month getValue() {

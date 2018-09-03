@@ -1,22 +1,27 @@
 package aggregate.core.io;
 
 import java.util.List;
-
 import aggregate.core.constant.Constant;
 import aggregate.core.model.ColumnSet;
 
 /**
- * 集計結果データを出力する抽象クラス
+ * Abstract class for writing aggregated data.
  */
 public abstract class Writer {
 
   /**
-   * 指定された{@link ColumnSet}のデータを出力する
+   * Write argument List of {@link ColumnSet}.
    *
-   * @param columnSets {@link ColumnSet}のList
+   * @param columnSets List of {@link ColumnSet}
    */
   public abstract void write(List<ColumnSet> columnSets);
 
+  /**
+   * Getter of header line as output String.
+   *
+   * @param columnSet {@link ColumnSet}
+   * @return Header line
+   */
   protected String getHeaderLine(ColumnSet columnSet) {
     StringBuffer sb = new StringBuffer();
     columnSet.getHeaders().forEach(

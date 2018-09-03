@@ -2,24 +2,21 @@ package aggregate.core.model.column;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import aggregate.core.util.CastUtils;
 
 /**
- * 日付のカラムの値を保持するクラス
+ * Column Class for date value.
  */
 public class DateColumn extends Column {
 
-  /** 日付フォーマット */
   private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-  /** カラム値 */
   private LocalDate value;
 
   /**
    * Constructor
    *
-   * @param no 列No
-   * @param value 日付を表す文字列（yyyy/MM/dd）
+   * @param no Column number
+   * @param value Column value of date as String（yyyy/MM/dd）.
    */
   public DateColumn(int no, String value) {
     super(no, value);
@@ -29,8 +26,8 @@ public class DateColumn extends Column {
   /**
    * Constructor
    *
-   * @param no 列No
-   * @param value 日付
+   * @param no Column number
+   * @param value Column value of date.
    */
   public DateColumn(int no, LocalDate value) {
     super(no, value.format(formatter));
@@ -38,9 +35,9 @@ public class DateColumn extends Column {
   }
 
   /**
-   * カラム値のgetter
+   * Getter of value.
    *
-   * @return カラム値
+   * @return Column value
    */
   public LocalDate getValue() {
     return value;

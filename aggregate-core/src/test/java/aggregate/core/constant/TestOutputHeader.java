@@ -1,33 +1,33 @@
 package aggregate.core.constant;
 
 /**
- * 出力用のヘッダー情報
+ * Header settings for output csv files of test code.
  */
 public enum TestOutputHeader implements BaseSheetHeader {
 
-  /** 月単位の売上の合計ヘッダー */
+  /** Monthly total amount header */
   MONTHLY_TOTAL_AMOUNT(0, "売上合計（月）", ColumnType.CURRENCY),
-  /** 個人単位の売上の合計ヘッダー */
+  /** Personal total amount header */
   PERSONAL_TOTAL_AMOUNT(1, "売上合計（個人）", ColumnType.CURRENCY),
-  /** 曜日ヘッダー */
+  /** Day of week header */
   DAY_OF_WEEK(2, "曜日", ColumnType.DAY_OF_WEEK),
-  /** 月ヘッダー */
+  /** Month header */
   MONTH(3, "月", ColumnType.MONTH),
-  /** 個人単位の売上率ヘッダー */
+  /** Personal amount rate header */
   PERSONAL_AMOUNT_RATE(4, "売上率（個人）", ColumnType.PERCENT),
-  /** 個数ヘッダー **/
+  /** Count header **/
   COUNT(5, "受注数", ColumnType.BIGDECIMAL),
-  /** テストケースの実行結果用ヘッダー */
+  /** Amount header expected by test code */
   EXPECT_AMOUNT(6, "受注金額", ColumnType.STRING),
-  /** テストケースの実行結果用ヘッダー */
+  /** Personal total amount header expected by test code */
   EXPECT_PERSONAL_TOTAL_AMOUNT(7, "売上合計（個人）", ColumnType.STRING),
-  /** テストケースの実行結果用ヘッダー */
+  /** Personal amount rate header expected by test code */
   EXPECT_PERSONAL_AMOUNT_RATE(8, "売上率（個人）", ColumnType.STRING),
-  /** テストケースの実行結果用ヘッダー */
+  /** Month header expected by test code */
   EXPECT_MONTH(9, "月", ColumnType.STRING),
-  /** テストケースの実行結果用ヘッダー */
+  /** Monthly total amount header expected by test code */
   EXPECT_MONTHLY_TOTAL_AMOUNT(10, "売上合計（月）", ColumnType.STRING),
-  /** テストケースの実行結果用ヘッダー */
+  /** Day of week header expected by test code */
   EXPECT_DAY_OF_WEEK(11, "曜日", ColumnType.STRING);
 
   private int id;

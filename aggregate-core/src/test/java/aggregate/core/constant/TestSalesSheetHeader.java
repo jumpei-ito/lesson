@@ -1,17 +1,17 @@
 package aggregate.core.constant;
 
-import aggregate.core.constant.BaseSheetHeader;
-import aggregate.core.constant.ColumnType;
-
+/**
+ * Header settings for original csv files of test code.
+ */
 public enum TestSalesSheetHeader implements BaseSheetHeader {
 
-  /** 担当者ヘッダー */
+  /** Person header */
   PERSON(0, "担当者", ColumnType.STRING),
-  /** 受注日ヘッダー */
+  /** Date header */
   DATE(1, "受注日", ColumnType.DATE),
-  /** 受注商品コードヘッダー */
+  /** Item code header */
   ITEM_CODE(2, "受注商品コード", ColumnType.STRING),
-  /** 受注金額ヘッダー */
+  /** Amount header */
   AMOUNT(3, "受注金額", ColumnType.CURRENCY);
 
   private int id;

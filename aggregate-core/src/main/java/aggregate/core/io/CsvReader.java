@@ -18,22 +18,30 @@ import aggregate.core.constant.Constant;
 import aggregate.core.model.ColumnSet;
 
 /**
- * CSVファイルのデータを読み込むクラス
+ * Class for reading csv files.
  */
 @Component
 public class CsvReader {
 
   /**
-   * 指定されたファイルの指定ヘッダーを読み込んで{@link ColumnSet}のListを返す
+   * Read by argument header and file path to List of {@link ColumnSet}.
    *
-   * @param headers ヘッダーの配列
-   * @param filePath CSVファイルの絶対パス
-   * @return {@link ColumnSet}のList
+   * @param headers Array of csv file headers
+   * @param filePath Absolute csv file path
+   * @return List of {@link ColumnSet}
    */
   public List<ColumnSet> read(BaseSheetHeader[] headers, String filePath) {
     return readMain(headers, filePath, readLineFunction());
   }
 
+  /**
+   * Read with quote by argument header and file path to List of {@link ColumnSet}.
+   *
+   * @param headers Array of csv file headers
+   * @param filePath Absolute csv file path
+   * @param quote Quote of csv file
+   * @return List of {@link ColumnSet}
+   */
   public List<ColumnSet> read(BaseSheetHeader[] headers, String filePath, String quote) {
     return readMain(headers, filePath, readLineFunction(quote));
   }

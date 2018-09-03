@@ -5,15 +5,29 @@ import java.util.stream.Collectors;
 import aggregate.core.model.ColumnSet;
 import aggregate.core.model.grouping.GroupingKey.GroupingKeyBuilder;
 
+/**
+ * Class holding some {@link GroupingKey}.
+ */
 public class GroupingKeys {
 
   private List<GroupingKey> groupingKeys;
 
+  /**
+   * Constructor
+   *
+   * @param columnSet ColumnSet to be aggregated
+   * @param builders List of {@link GroupingKey}
+   */
   public GroupingKeys(ColumnSet columnSet, List<GroupingKeyBuilder> builders) {
     this.groupingKeys = builders.stream().map(builder -> builder.columnSet(columnSet).build())
         .collect(Collectors.toList());
   }
 
+  /**
+   * Getter of groupingKeys.
+   *
+   * @return Grouping keys
+   */
   public List<GroupingKey> getKeys() {
     return groupingKeys;
   }

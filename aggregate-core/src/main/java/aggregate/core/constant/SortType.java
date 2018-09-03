@@ -1,13 +1,13 @@
 package aggregate.core.constant;
 
 /**
- * ソート種別
+ * Type of sort.
  */
 public enum SortType {
 
-  /** 照準 */
+  /** Ascending order */
   ASC(0),
-  /** 降順 */
+  /** descending order */
   DESC(1);
 
   private int id;
@@ -17,7 +17,7 @@ public enum SortType {
   }
 
   /**
-   * idのgetter
+   * Getter of id.
    *
    * @return id
    */
@@ -26,10 +26,10 @@ public enum SortType {
   }
 
   /**
-   * {@link SortType}との比較
+   * Compare two {@link SortType} values.
    *
-   * @param sortType {@link SortType}
-   * @return idが同じ場合true
+   * @param sortType The SortType to be compared
+   * @return true if the SortTypes are the same, false otherwise.
    */
   public boolean equals(SortType sortType) {
     return id == sortType.getId();

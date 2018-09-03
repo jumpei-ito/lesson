@@ -20,6 +20,9 @@ import aggregate.core.service.ColumnSetSorter;
 import aggregate.core.util.CheckUtils;
 import aggregate.core.util.FunctionUtils;
 
+/**
+ * Aggregator class to summarize and pick row has max value.
+ */
 @Component
 public class MaxPicker {
 
@@ -28,6 +31,16 @@ public class MaxPicker {
   @Autowired
   private ColumnSetSorter sorter;
 
+  /**
+   * Picks row has max value by argument conditions and returns aggregated ColumnSet list.
+   *
+   * @param columnSets List of ColumnSet to be aggregated
+   * @param builders Builder of some grouping keys
+   * @param aggregateKey Column header to be picked
+   * @param sortKeys Sort keys
+   * @param outputHeaders Headers for aggregated ColumnSet list
+   * @return Aggregated ColumnSet list
+   */
   public List<ColumnSet> execute(List<ColumnSet> columnSets, GroupingKeysBuilder builders,
       BaseSheetHeader aggregateKey, List<SortKey> sortKeys, List<BaseSheetHeader> outputHeaders) {
     // aggregate

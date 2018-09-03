@@ -10,6 +10,9 @@ import aggregate.core.io.CsvReader;
 import aggregate.core.io.Writer;
 import aggregate.core.model.ColumnSet;
 
+/**
+ * Service class to call aggregator classes and output aggregate results.
+ */
 @Component
 public class AggregateService {
 
@@ -18,6 +21,12 @@ public class AggregateService {
   @Autowired
   private Writer writer;
 
+  /**
+   * Calls Aggregators implements {@link BaseAggregator} and output aggregate result by writer class
+   * extends {@link Writer}.
+   *
+   * @param application Spring context
+   */
   public void aggregate(AggregateApplication application) {
     List<ColumnSet> columnSets = readCsvFile(application);
     List<BaseAggregator> aggregators = application.getAggregators();

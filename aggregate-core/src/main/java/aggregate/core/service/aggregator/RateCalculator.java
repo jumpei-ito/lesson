@@ -10,17 +10,20 @@ import aggregate.core.model.column.BigDecimalColumn;
 import aggregate.core.model.column.Column;
 import aggregate.core.util.FunctionUtils;
 
+/**
+ * Aggregator class to calculate a rate from two columns.
+ */
 @Component
 public class RateCalculator {
 
   /**
-   * 引数のヘッダーを基に割合を算出し、{@link ColumnSet}の１番右のカラムに追加する
+   * Calcurates a rate from argument columns and add calcurated result column to right of ColumnSet.
    *
-   * @param columnSets カラムセット
-   * @param dividendHeader 割られる数を保持するヘッダー
-   * @param divisorHeader 割る数を保持するヘッダー
-   * @param outputHeader 計算結果ヘッダー
-   * @return
+   * @param columnSets List of ColumnSet to be aggregated
+   * @param dividendHeader Dividend column header
+   * @param divisorHeader Divisor column header
+   * @param outputHeader Calcurated result column header
+   * @return Calcurated ColumnSet list
    */
   public List<ColumnSet> execute(List<ColumnSet> columnSets, BaseSheetHeader dividendHeader,
       BaseSheetHeader divisorHeader, BaseSheetHeader outputHeader) {

@@ -16,6 +16,9 @@ import aggregate.core.service.ColumnSetConverter;
 import aggregate.core.service.ColumnSetSorter;
 import aggregate.core.util.FunctionUtils;
 
+/**
+ * Aggregator class to count specified rows.
+ */
 @Component
 public class Counter {
 
@@ -24,13 +27,22 @@ public class Counter {
   @Autowired
   private ColumnSetSorter sorter;
 
+  /**
+   * Counts rows count by argument conditions and returns aggregated ColumnSet list.
+   *
+   * @param columnSets List of ColumnSet to be aggregated
+   * @param builder Builder of some grouping keys
+   * @param aggregateKey Column header to be counted
+   * @param sortKeys Sort keys
+   * @return Aggregated ColumnSet list
+   */
   public List<ColumnSet> execute(List<ColumnSet> columnSets, GroupingKeysBuilder builder,
-      BaseSheetHeader summaryKey, List<SortKey> sortKeys) {
+      BaseSheetHeader aggregateKey, List<SortKey> sortKeys) {
     // count
     Map<GroupingKeys, BigDecimal> tmpResult = columnSets.stream()
         .collect(Collectors.groupingBy(FunctionUtils.getGroupingKeys(builder), counting()));
     // convert to columnSet
-    List<ColumnSet> convertedResult = converter.convert(tmpResult, summaryKey);
+    List<ColumnSet> convertedResult = converter.convert(tmpResult, aggregateKey);
     // sort columnSet
     return sorter.sortColumnSets(convertedResult, sortKeys);
   }

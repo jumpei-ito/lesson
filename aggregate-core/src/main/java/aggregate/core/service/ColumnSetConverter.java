@@ -12,9 +12,19 @@ import aggregate.core.model.column.Column;
 import aggregate.core.model.grouping.GroupingKey;
 import aggregate.core.model.grouping.GroupingKeys;
 
+/**
+ * Class to convert aggregate result and ColumnSet list to new ColumnSet list.
+ */
 @Component
 public class ColumnSetConverter {
 
+  /**
+   * Converts aggregate result (GroupingKeys and summary value) to ColumnSet list.
+   *
+   * @param aggregateResult Aggregate result to be converted
+   * @param summaryKey summarized column header
+   * @return Converted ColumnSet list
+   */
   public List<ColumnSet> convert(Map<GroupingKeys, BigDecimal> aggregateResult,
       BaseSheetHeader summaryKey) {
     return aggregateResult.entrySet().stream()
@@ -22,6 +32,13 @@ public class ColumnSetConverter {
         .collect(Collectors.toList());
   }
 
+  /**
+   * Converts aggregate result (GroupingKeys and ColumnSet) to ColumnSet list.
+   *
+   * @param aggregateResult Aggregate result to be converted
+   * @param headers Column headers after convert
+   * @return Converted ColumnSet list
+   */
   public List<ColumnSet> convert(Map<GroupingKeys, ColumnSet> aggregateResult,
       List<BaseSheetHeader> headers) {
     return aggregateResult.entrySet().stream().map(e -> convertToColumnSet(e.getValue(), headers))
@@ -53,6 +70,14 @@ public class ColumnSetConverter {
     }
   }
 
+  /**
+   * Merges columns to right of original ColumnSet and returns result.<br>
+   * Skips merge the same columns betoween two ColumnSets.
+   *
+   * @param to Original ColumnSet list
+   * @param from ColumnSet list to be merged
+   * @return Merged ColumnSet list
+   */
   public List<ColumnSet> mergeToRight(List<ColumnSet> to, List<ColumnSet> from) {
     if (to.size() != from.size()) {
       throw new RuntimeException(String
@@ -78,6 +103,16 @@ public class ColumnSetConverter {
     }
   }
 
+  /**
+   * Merges two ColumnSet lists after specified original column.<br>
+   * Skips merge columns of primaryKey.
+   *
+   * @param to Original ColumnSet list
+   * @param from ColumnSet list to be merged
+   * @param primaryKey primary key of two ColumnSets
+   * @param after Point to merge
+   * @return Merged ColumnSet list
+   */
   public List<ColumnSet> merge(List<ColumnSet> to, List<ColumnSet> from,
       List<BaseSheetHeader> primaryKey, BaseSheetHeader after) {
     if (to.size() < from.size()) {
