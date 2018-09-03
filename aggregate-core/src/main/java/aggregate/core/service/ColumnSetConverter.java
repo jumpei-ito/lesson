@@ -11,7 +11,6 @@ import aggregate.core.model.ColumnSet;
 import aggregate.core.model.column.Column;
 import aggregate.core.model.grouping.GroupingKey;
 import aggregate.core.model.grouping.GroupingKeys;
-import aggregate.core.util.CheckUtils;
 
 @Component
 public class ColumnSetConverter {
@@ -30,7 +29,7 @@ public class ColumnSetConverter {
   }
 
   private ColumnSet convertToColumnSet(ColumnSet originalColumnSet, List<BaseSheetHeader> headers) {
-    if (!CheckUtils.containsKeys(originalColumnSet, headers)) {
+    if (!originalColumnSet.containsHeaders(headers)) {
       throw new RuntimeException("Not contains output headers in ColumnSet.");
     }
     ColumnSet columnSet = new ColumnSet();

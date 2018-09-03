@@ -1,10 +1,7 @@
 package aggregate.core.util;
 
-import java.util.List;
-
 import aggregate.core.constant.BaseSheetHeader;
 import aggregate.core.constant.ColumnType;
-import aggregate.core.model.ColumnSet;
 
 public class CheckUtils {
 
@@ -18,12 +15,4 @@ public class CheckUtils {
         || ColumnType.PERCENT.equals(header.getColumnType());
   }
 
-  public static boolean containsKeys(ColumnSet columnSet, List<BaseSheetHeader> headers) {
-    for (BaseSheetHeader header : headers) {
-      if (!columnSet.containsHeader(header)) {
-        return false;
-      }
-    }
-    return true;
-  }
 }

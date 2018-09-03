@@ -10,7 +10,6 @@ import com.google.common.collect.Lists;
 import aggregate.core.constant.BaseSheetHeader;
 import aggregate.core.model.ColumnSet;
 import aggregate.core.model.SortKey;
-import aggregate.core.util.CheckUtils;
 
 @Component
 public class ColumnSetSorter {
@@ -22,8 +21,8 @@ public class ColumnSetSorter {
 
   private void validateBeforeSort(List<ColumnSet> columnSets, List<SortKey> sortKeys) {
     // Create new ArrayList because "Lists.transform" is applied lazily.
-    List<BaseSheetHeader> header = new ArrayList<>(Lists.transform(sortKeys, key -> key.getKey()));
-    if (!CheckUtils.containsKeys(columnSets.get(0), header)) {
+    List<BaseSheetHeader> headers = new ArrayList<>(Lists.transform(sortKeys, key -> key.getKey()));
+    if (!columnSets.get(0).containsHeaders(headers)) {
       throw new RuntimeException("Not contains sortKeys in ColumnSet.");
     }
   }
