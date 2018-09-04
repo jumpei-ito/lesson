@@ -10,8 +10,9 @@ class ColumnSetComparator {
   private static String EMPTY_LINE = "Empty Line"
   Writer writer = new StdOutWriter()
 
-  CompareResult compare(List<ColumnSet> expected, List<ColumnSet> aggregated) {
-    CompareResult result = new CompareResult(getHeaderDiff(expected, aggregated))
+  CompareResult compare(ExpectedColumnSetList expected, List<ColumnSet> aggregated) {
+    CompareResult result =
+        new CompareResult(getHeaderDiff(expected, aggregated), expected.expectedFilePath)
     for (int i = 0; i < expected.size(); i++) {
       compareLine(i, expected.get(i), getAggregatedColumnSet(i, aggregated), result)
     }

@@ -9,6 +9,7 @@ import aggregate.core.exception.MissingColumnTypeException
 import aggregate.core.io.CsvReader
 import aggregate.core.io.Writer
 import aggregate.core.model.ColumnSet
+import aggregate.core.util.AggregateLogger
 import spock.lang.Specification
 
 class BaseAggregateSpecification extends Specification {
@@ -28,13 +29,13 @@ class BaseAggregateSpecification extends Specification {
     writer = application.getBean(Writer.class)
   }
 
-  def compare(List<ColumnSet> expected, List<ColumnSet> aggregated) {
+  def compare(ExpectedColumnSetList expected, List<ColumnSet> aggregated) {
     comparator.compare(expected, aggregated)
   }
 
   void assertCompareResult(CompareResult result) {
     if (result.isDifferent) {
-      printDifference(result.diffs)
+      printDifference(result.diffs, result.expectedFilePath)
     }
     assertFalse(result.isDifferent)
   }
@@ -44,11 +45,13 @@ class BaseAggregateSpecification extends Specification {
   }
 
   def readExpectedFile(BaseParameters params) {
-    readFile(params.expectedHeaders, params.expectedFilePath, null)
+    def expected = readFile(params.expectedHeaders, params.expectedFilePath, null)
+    new ExpectedColumnSetList(expected, params.expectedFilePath)
   }
 
   def readExpectedFile(BaseParameters params, String quote) {
-    readFile(params.expectedHeaders, params.expectedFilePath, quote)
+    def expected = readFile(params.expectedHeaders, params.expectedFilePath, quote)
+    new ExpectedColumnSetList(expected, params.expectedFilePath)
   }
 
   def readFile(BaseSheetHeader[] headers, String filePath, String quote) {
@@ -62,15 +65,24 @@ class BaseAggregateSpecification extends Specification {
     }
   }
 
-  def printDifference(List<String> diffs) {
-    println("Differences between aggregated result and expected result.")
-    println("[row] Expected Line <--> Actual Line")
-    diffs.each { println it }
+  def printDifference(List<String> diffs, String expectedFilePath) {
+    String caseTitle = specificationContext.currentIteration.name
+    AggregateLogger.info("Start Case: " + caseTitle)
+    AggregateLogger.info("- Expected file: " + expectedFilePath)
+    AggregateLogger.info("- [row] Expected Line <--> Actual Line")
+    diffs.each { AggregateLogger.info("- " + it) }
+    AggregateLogger.info("End Case: " + caseTitle)
   }
 
   void assertMissingColumnTypeException(MissingColumnTypeException e, ColumnType expectedType) {
-    println(e)
-    assertTrue(e.getExpected().equals(expectedType))
+    def result = e.getExpected().equals(expectedType)
+    if (!result) {
+      String caseTitle = specificationContext.currentIteration.name
+      AggregateLogger.info("Start Case: " + caseTitle)
+      AggregateLogger.info("- " + e.getMessage())
+      AggregateLogger.info("End Case: " + caseTitle)
+    }
+    assertTrue(result)
   }
 
 }

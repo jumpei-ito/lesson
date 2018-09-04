@@ -9,6 +9,7 @@ import aggregate.core.constant.Constant;
 import aggregate.core.io.CsvReader;
 import aggregate.core.io.Writer;
 import aggregate.core.model.ColumnSet;
+import aggregate.core.util.AggregateLogger;
 
 /**
  * Service class to call aggregator classes and output aggregate results.
@@ -46,12 +47,12 @@ public class AggregateService {
 
   private void execute(BaseAggregator aggregator, List<ColumnSet> columnSets) {
     String aggregatorName = aggregator.getClass().getSimpleName();
-    System.out.println(String.format("- Start %s.", aggregatorName));
+    AggregateLogger.info(String.format("- Start %s.", aggregatorName));
     // aggregate
     List<ColumnSet> result = aggregator.aggregate(columnSets);
     // TODO: output to csv file
     writer.write(result);
-    System.out.println(String.format("- End %s.", aggregatorName));
+    AggregateLogger.info(String.format("- End %s.", aggregatorName));
   }
 
 }
