@@ -18,10 +18,10 @@ import spock.lang.Unroll
 
 class SummarizerSpecification extends BaseAggregateSpecification {
 
-  Summarizer summarizer
-  List<ColumnSet> original
+  static Summarizer summarizer
+  static List<ColumnSet> original
 
-  def setup() {
+  def setupSpec() {
     summarizer = application.getBean(Summarizer.class)
     original = readFile(Constant.ORIGINAL_HEADERS, Constant.ORIGINAL_FILE_PATH, null)
   }

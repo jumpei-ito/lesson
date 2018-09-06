@@ -9,7 +9,7 @@ public class ProjectMain {
   public static void main(String[] args) {
     AggregateLogger.info("Start Sales Aggregator.");
     // Spring boot up
-    AggregateApplication application = new AggregateApplication(SalesAggregateConfig.class);
+    AggregateApplication application = new AggregateApplication();
     // aggregate
     AggregateService service = application.getBean(AggregateService.class);
     service.aggregate(application);

@@ -13,9 +13,9 @@ import spock.lang.Unroll
 
 class CounterSpecification extends BaseAggregateSpecification {
 
-  Counter counter
+  static Counter counter
 
-  def setup() {
+  def setupSpec() {
     counter = application.getBean(Counter.class)
   }
 

@@ -14,16 +14,17 @@ import spock.lang.Specification
 
 class BaseAggregateSpecification extends Specification {
 
-  /** Spring boot up */
-  static final AggregateApplication application = new AggregateApplication(TestConfig.class)
+  static AggregateApplication application
   //**  */
   static Map<String, List<ColumnSet>> files = new HashMap()
 
   def comparator = new ColumnSetComparator()
-  CsvReader reader
-  Writer writer
+  static CsvReader reader
+  static Writer writer
 
-  def setup() {
+  def setupSpec() {
+    // Spring boot up
+    application = new AggregateApplication(TestConfig.class)
     // create components
     reader = application.getBean(CsvReader.class)
     writer = application.getBean(Writer.class)

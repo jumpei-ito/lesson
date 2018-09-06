@@ -1,15 +1,23 @@
 apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'jacoco'
+
+// Compile and execute by UTF-8 to read JDK javadoc.
+// Encode setting exists in "gradle.properties" too.
+def defaultEncoding = 'UTF-8'
+tasks.withType(AbstractCompile) each { it.options.encoding = defaultEncoding }
+tasks.withType(GroovyCompile) each { it.groovyOptions.encoding = defaultEncoding }
 
 repositories {
     jcenter()
 }
 
 dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'com.google.guava:guava:23.0'
     compile 'org.springframework:spring-context:5.0.0.RELEASE'
     compile project(':aggregate-core')
 
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.15'
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
     testCompile 'junit:junit:4.12'
 }
-

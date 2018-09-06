@@ -11,4 +11,8 @@ class BaseParameters {
   BaseSheetHeader[] expectedHeaders
   /**  */
   String expectedFilePath
+
+  static def builder() {
+    new BaseParametersBuilder()
+  }
 }

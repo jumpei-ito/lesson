@@ -11,9 +11,9 @@ import spock.lang.Unroll
 
 class MergeColumnSetSpecification extends BaseAggregateSpecification {
 
-  ColumnSetConverter converter
+  static ColumnSetConverter converter
 
-  def setup() {
+  def setupSpec() {
     converter = application.getBean(ColumnSetConverter.class)
   }
 

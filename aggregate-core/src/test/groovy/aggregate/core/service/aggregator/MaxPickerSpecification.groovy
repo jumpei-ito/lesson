@@ -13,10 +13,10 @@ import spock.lang.Unroll
 
 class MaxPickerSpecification extends BaseAggregateSpecification {
 
-  MaxPicker picker
-  List<ColumnSet> original
+  static MaxPicker picker
+  static List<ColumnSet> original
 
-  def setup() {
+  def setupSpec() {
     picker = application.getBean(MaxPicker.class)
     // read original csv file
     original = readFile(Constant.ORIGINAL_HEADERS, Constant.ORIGINAL_FILE_PATH, null)

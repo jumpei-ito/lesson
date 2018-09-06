@@ -21,37 +21,17 @@ class AggregateParameters extends BaseParameters {
     new AggregateParametersBuilder()
   }
 
-  static class AggregateParametersBuilder {
-    /** set default value */
-    BaseSheetHeader[] originalHeaders = Constant.ORIGINAL_HEADERS
-    /** set default value */
-    String originalFilePath = Constant.ORIGINAL_FILE_PATH
-    BaseSheetHeader[] expectedHeaders
-    String expectedFilePath
+  static class AggregateParametersBuilder extends BaseParametersBuilder {
     GroupingKeysBuilder groupingKeyBuilder
     AggregateKey aggregateKey
     BaseSheetHeader aggregateKeyHeader
     List<SortKey> sortKeys
     List<BaseSheetHeader> outputHeaders
 
-    def originalHeaders(BaseSheetHeader[] originalHeaders) {
-      this.originalHeaders = originalHeaders
-      return this
-    }
-
-    def originalFilePath(String originalFilePath) {
-      this.originalFilePath = originalFilePath
-      return this
-    }
-
-    def expectedHeaders(BaseSheetHeader[] expectedHeaders) {
-      this.expectedHeaders = expectedHeaders
-      return this
-    }
-
-    def expectedFilePath(String expectedFilePath) {
-      this.expectedFilePath = expectedFilePath
-      return this
+    AggregateParametersBuilder() {
+      // set default value
+      originalHeaders = Constant.ORIGINAL_HEADERS
+      originalFilePath = Constant.ORIGINAL_FILE_PATH
     }
 
     def groupingKeyBuilder(GroupingKeysBuilder groupingKeyBuilder) {
@@ -79,6 +59,7 @@ class AggregateParameters extends BaseParameters {
       return this
     }
 
+    @Override
     def build() {
       new AggregateParameters(
           originalHeaders: this.originalHeaders,

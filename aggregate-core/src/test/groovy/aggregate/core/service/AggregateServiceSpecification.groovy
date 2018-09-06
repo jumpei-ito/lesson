@@ -4,9 +4,9 @@ import aggregate.core.common.BaseAggregateSpecification
 
 class AggregateServiceSpecification extends BaseAggregateSpecification {
 
-  AggregateService service
+  static AggregateService service
 
-  def setup() {
+  def setupSpec() {
     service = application.getBean(AggregateService.class)
   }
 

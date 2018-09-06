@@ -18,6 +18,8 @@ public class Constant {
   /** Format of rate column. */
   public static final DecimalFormat PERCENT_FORMAT = new DecimalFormat("##0.0%");
   /** Property name of original csv file path. */
-  public static final String P_CSV_FILE_PATH = "csvFilePath";
+  public static final String P_ORIGINAL_CSV_PATH = "originalCsvPath";
+  /** Property name of components scan package for Spring. */
+  public static final String P_SCAN_PACKAGE = "scanPackage";
 
 }

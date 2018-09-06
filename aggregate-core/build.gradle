@@ -16,8 +16,22 @@ dependencies {
     compile 'ch.qos.logback:logback-classic:1.2.3'
     compile 'com.google.guava:guava:25.1-jre'
     compile 'org.springframework:spring-context:5.0.0.RELEASE'
-    compile 'org.codehaus.groovy:groovy-all:2.4.15'
 
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.15'
     testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
     testCompile 'junit:junit:4.12'
 }
+
+// TODO: Upgrade gradle version to 4.3. Current version of this project is 2.14.1.
+// Build coverage report task of child project is failed cause difference of two gradle version.
+// Child project can build report If update sourceSets for test code.
+//sourceSets {
+//    main {
+//    	java {
+//    	    srcDirs += ['src/test/java']
+//    	}
+//        groovy {
+//            srcDirs = ['src/test/groovy']
+//        }
+//    }
+//}

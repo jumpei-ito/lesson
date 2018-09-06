@@ -76,7 +76,7 @@ public class ColumnSet {
    */
   public Column getColumn(BaseSheetHeader header) {
     if (!containsHeader(header)) {
-      throw new RuntimeException("Not contains column of header:" + header.toString());
+      throw new RuntimeException("Not contains column has this header:" + header.toString());
     }
     return columns.get(header);
   }

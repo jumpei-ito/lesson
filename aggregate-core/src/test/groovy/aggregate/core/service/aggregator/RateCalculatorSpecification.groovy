@@ -10,9 +10,9 @@ import spock.lang.Unroll
 
 class RateCalculatorSpecification extends BaseAggregateSpecification {
 
-  RateCalculator calculator
+  static RateCalculator calculator
 
-  def setup() {
+  def setupSpec() {
     calculator = application.getBean(RateCalculator.class)
   }
 
