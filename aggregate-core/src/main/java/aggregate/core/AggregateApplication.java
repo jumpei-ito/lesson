@@ -92,6 +92,7 @@ public class AggregateApplication {
     if (aggregatorBeans.size() == 0) {
       AggregateLogger.info("Aggregator class is not found.");
     }
+    // sort by ascending execute order
     return aggregatorBeans.values().stream()
         .sorted((a1, a2) -> a1.getExecuteOrder() - a2.getExecuteOrder())
         .collect(Collectors.toList());

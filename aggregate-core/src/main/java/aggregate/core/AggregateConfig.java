@@ -33,9 +33,10 @@ public class AggregateConfig {
   }
 
   /**
-   * Property of components scan package for project.
+   * Property of package name to scan Spring components for subproject.<br>
+   * Returns empty string if property is not set.
    *
-   * @return Components scan package name
+   * @return Package name to scan components
    */
   @Bean(name = Constant.P_SCAN_PACKAGE)
   public String scanPackage() {

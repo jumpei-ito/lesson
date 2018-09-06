@@ -54,8 +54,11 @@ public class CsvReader {
       List<BaseSheetHeader> fileHeaders = readHeader(headers, readLineFunction.apply(line));
       // read body
       List<ColumnSet> result = new ArrayList<>();
+      int row = 1;
       while ((line = br.readLine()) != null) {
-        result.add(new ColumnSet(fileHeaders, readLineFunction.apply(line)));
+        String[] columns = readLineFunction.apply(line);
+        validateLine(fileHeaders, columns, row++);
+        result.add(new ColumnSet(fileHeaders, columns));
       }
       return result;
     } catch (FileNotFoundException e) {
@@ -76,7 +79,16 @@ public class CsvReader {
     if (result.isPresent()) {
       return result.get();
     } else {
-      throw new RuntimeException("Header is not found: " + headerName);
+      String headerEnum = headers.getClass().getSimpleName().replaceAll("\\[\\]", "");
+      throw new RuntimeException(
+          String.format("Header is not found in %s: %s", headerEnum, headerName));
+    }
+  }
+
+  private void validateLine(List<BaseSheetHeader> headers, String[] columns, int row) {
+    // validate headers and columns size
+    if (headers.size() != columns.length) {
+      throw new RuntimeException("Missmatch column size between header and line " + row);
     }
   }
 

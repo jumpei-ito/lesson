@@ -35,15 +35,11 @@ public class ColumnSet {
    * @param values Line data(Array of columns)
    */
   public ColumnSet(List<BaseSheetHeader> headers, String[] values) {
-    if (headers.size() != values.length) {
-      throw new RuntimeException(String.format(
-          "Missmatch header and body count. header: %d, body: %d", headers.size(), values.length));
-    }
-    headers
-        .forEach(header -> columns.put(header, getColumn(headers.indexOf(header), header, values)));
+    headers.forEach(header -> columns.put(header, getColumn(headers, header, values)));
   }
 
-  private Column getColumn(int no, BaseSheetHeader header, String[] values) {
+  private Column getColumn(List<BaseSheetHeader> headers, BaseSheetHeader header, String[] values) {
+    int no = headers.indexOf(header);
     return getColumn(no, header, values[no]);
   }
 
