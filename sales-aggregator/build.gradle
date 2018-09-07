@@ -13,10 +13,11 @@ repositories {
 }
 
 dependencies {
+    compile 'ch.qos.logback:logback-classic:1.2.3'
     compile 'com.google.guava:guava:23.0'
     compile 'org.springframework:spring-context:5.0.0.RELEASE'
     compile 'org.codehaus.groovy:groovy-all:2.4.15'
-    compile project(':aggregate-core')
+    compile files('lib/aggregate-core-1.0.0.jar')
 
     testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
     testCompile 'junit:junit:4.12'
